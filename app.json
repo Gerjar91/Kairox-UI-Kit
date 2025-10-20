@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Karol-UI-Kit",
-    "slug": "Karol-UI-Kit",
+    "name": "kairox-UI-Kit",
+    "slug": "kairox-UI-Kit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.gerjar.kairoxUIKit"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "053bf3e4-6253-4543-971a-1351f6b9ca55"
+      }
     }
   }
 }

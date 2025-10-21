@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #70c0f5 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #667eea;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 15px 0;
+            padding: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .visual-example-item:last-child {
+            border-bottom: none;
+        }
+
+        .variant-4xl {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .variant-3xl {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .variant-2xl {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .variant-xl {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .variant-lg {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .variant-md {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .variant-sm {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .variant-xs {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        .navigation {
+            position: sticky;
+            top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-link {
+            display: block;
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 0;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            padding-left: 10px;
+            color: #764ba2;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Text Component</h1>
+            <p>Componente de texto personalizable con sistema de variantes y tema</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Text</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Text</code> es un wrapper del componente nativo de React Native que integra 
+                el sistema de tema de Kairox UI Kit. Proporciona variantes predefinidas con diferentes tamaños 
+                y pesos de fuente usando la familia tipográfica DM Sans.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Este componente se conecta automáticamente al ThemeProvider y aplica 
+                las fuentes DM Sans que deben estar cargadas en tu aplicación.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>variant</strong></td>
+                            <td><span class="type">'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'md'</code></td>
+                            <td>Define el tamaño y peso de la fuente según las variantes predefinidas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>children</strong></td>
+                            <td><span class="type">React.ReactNode</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Contenido del texto a mostrar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">StyleProp&lt;TextStyle&gt;</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados adicionales</td>
+                        </tr>
+                        <tr>
+                            <td><strong>color</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#1A1A1A'</code></td>
+                            <td>Color del texto (hereda de TextStyle)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>...TextStyle</strong></td>
+                            <td><span class="type">TextStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Cualquier prop válida de TextStyle de React Native</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Variantes -->
+        <div class="section">
+            <h2>🎨 Variantes</h2>
+            <p>El componente Text utiliza variantes definidas en el sistema de tema. Las variantes disponibles se configuran en <code>src/theme/Text.tsx</code>:</p>
+            
+            <div class="code-block">
+<span class="keyword">export const</span> <span class="component">variants</span> = {
+  <span class="prop">xs</span>: {
+    <span class="prop">fontSize</span>: <span class="string">12</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">regular</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'400'</span> <span class="keyword">as const</span>,
+    <span class="prop">color</span>: <span class="string">'#4B5563'</span>, 
+  },
+  <span class="prop">sm</span>: {
+    <span class="prop">fontSize</span>: <span class="string">14</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">regular</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'400'</span> <span class="keyword">as const</span>,
+    <span class="prop">color</span>: <span class="string">'#374151'</span>, 
+  },
+  <span class="prop">md</span>: {
+    <span class="prop">fontSize</span>: <span class="string">16</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">medium</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'400'</span> <span class="keyword">as const</span>,
+  },
+  <span class="prop">lg</span>: {
+    <span class="prop">fontSize</span>: <span class="string">18</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">medium</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'500'</span> <span class="keyword">as const</span>,
+  },
+  <span class="prop">xl</span>: {
+    <span class="prop">fontSize</span>: <span class="string">20</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">semiBold</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'600'</span> <span class="keyword">as const</span>,
+  },
+  <span class="prop">2xl</span>: {
+    <span class="prop">fontSize</span>: <span class="string">24</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">bold</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'700'</span> <span class="keyword">as const</span>,
+  },
+  <span class="prop">3xl</span>: {
+    <span class="prop">fontSize</span>: <span class="string">30</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">bold</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'700'</span> <span class="keyword">as const</span>,
+  },
+  <span class="prop">4xl</span>: {
+    <span class="prop">fontSize</span>: <span class="string">36</span>,
+    <span class="prop">fontFamily</span>: <span class="component">Fonts</span>.<span class="prop">extraBold</span>,
+    <span class="prop">fontWeight</span>: <span class="string">'800'</span> <span class="keyword">as const</span>,
+  },
+};</div>
+
+         
+
+            <h3>Vista Previa de Variantes</h3>
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <div class="variant-4xl">Título 4XL - Extra Grande</div>
+                </div>
+                <div class="visual-example-item">
+                    <div class="variant-3xl">Título 3XL - Muy Grande</div>
+                </div>
+                <div class="visual-example-item">
+                    <div class="variant-2xl">Título 2XL - Grande</div>
+                </div>
+                <div class="visual-example-item">
+                    <div class="variant-xl">Título XL - Extra Large</div>
+                </div>
+                <div class="visual-example-item">
+                    <div class="variant-lg">Texto Large - Destacado</div>
+                </div>
+                <div class="visual-example-item">
+                    <div class="variant-md">Texto Medium - Por defecto</div>
+                </div>
+                <div class="visual-example-item">
+                    <div class="variant-sm">Texto Small - Secundario</div>
+                </div>
+                <div class="visual-example-item">
+                    <div class="variant-xs">Texto Extra Small - Pequeño</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejemplos -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Ejemplo básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Text</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> MyComponent = () => (
+  &lt;<span class="component">Text</span>&gt;Texto por defecto&lt;/<span class="component">Text</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con variantes</div>
+                <div class="code-block">
+&lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"4xl"</span>&gt;Título Principal&lt;/<span class="component">Text</span>&gt;
+&lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"2xl"</span>&gt;Subtítulo&lt;/<span class="component">Text</span>&gt;
+&lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"md"</span>&gt;Contenido normal&lt;/<span class="component">Text</span>&gt;
+&lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"xs"</span>&gt;Texto pequeño&lt;/<span class="component">Text</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con colores personalizados</div>
+                <div class="code-block">
+&lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"lg"</span> <span class="prop">color</span>=<span class="string">"#007AFF"</span>&gt;
+  Texto azul
+&lt;/<span class="component">Text</span>&gt;
+
+&lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"md"</span> <span class="prop">color</span>=<span class="string">"#E74C3C"</span>&gt;
+  Texto rojo
+&lt;/<span class="component">Text</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con estilos adicionales</div>
+                <div class="code-block">
+&lt;<span class="component">Text</span> 
+  <span class="prop">variant</span>=<span class="string">"lg"</span>
+  <span class="prop">marginBottom</span>={<span class="string">20</span>}
+  <span class="prop">textAlign</span>=<span class="string">"center"</span>
+  <span class="prop">textDecorationLine</span>=<span class="string">"underline"</span>
+&gt;
+  Texto centrado y subrayado
+&lt;/<span class="component">Text</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Usando style prop</div>
+                <div class="code-block">
+<span class="keyword">const</span> styles = StyleSheet.create({
+  customText: {
+    color: <span class="string">'#40d953'</span>,
+    fontStyle: <span class="string">'italic'</span>,
+    letterSpacing: <span class="string">1.5</span>,
+  },
+});
+
+&lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"xl"</span> <span class="prop">style</span>={styles.customText}&gt;
+  Texto personalizado
+&lt;/<span class="component">Text</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Ejemplo completo en contexto</div>
+                <div class="code-block">
+<span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;
+<span class="keyword">import</span> { <span class="component">View</span>, <span class="component">Text</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> ProfileCard = () => (
+  &lt;<span class="component">View</span> <span class="prop">padding</span>={<span class="string">20</span>} <span class="prop">backgroundColor</span>=<span class="string">"white"</span>&gt;
+    &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"3xl"</span> <span class="prop">marginBottom</span>={<span class="string">8</span>}&gt;
+      Juan Pérez
+    &lt;/<span class="component">Text</span>&gt;
+    
+    &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"md"</span> <span class="prop">color</span>=<span class="string">"#6B7280"</span> <span class="prop">marginBottom</span>={<span class="string">16</span>}&gt;
+      Desarrollador Full Stack
+    &lt;/<span class="component">Text</span>&gt;
+    
+    &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"sm"</span> <span class="prop">color</span>=<span class="string">"#9CA3AF"</span>&gt;
+      Miembro desde enero 2024
+    &lt;/<span class="component">Text</span>&gt;
+  &lt;/<span class="component">View</span>&gt;
+);
+
+<span class="keyword">export default</span> ProfileCard;</div>
+            </div>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>✨ Usa las variantes predefinidas en lugar de tamaños personalizados para mantener consistencia</li>
+                <li>🎨 Aprovecha los colores del tema cuando sea posible</li>
+                <li>📱 Asegúrate de que las fuentes DM Sans estén cargadas antes de usar el componente</li>
+                <li>♿ Considera la accesibilidad: usa tamaños de fuente legibles (no menores a 'xs')</li>
+                <li>🔄 Usa 'md' como variante base para texto de cuerpo</li>
+                <li>💡 Combina variantes para crear jerarquía visual clara</li>
+                <li>⚡ Evita anidar demasiados componentes Text, mejor usa un solo Text con el contenido completo</li>
+            </ul>
+        </div>
+
+        <!-- Personalización del Tema -->
+        <div class="section">
+            <h2>🎨 Personalización del Tema</h2>
+            <p>El componente Text se integra completamente con el sistema de tema. Puedes personalizar:</p>
+
+            <h3>1. Fuentes</h3>
+            <p>Modifica las fuentes en <code>src/theme/Fonts.tsx</code>:</p>
+            <div class="code-block">
+<span class="keyword">const</span> <span class="component">Fonts</span> = {
+  <span class="prop">bold</span>: <span class="string">'DMSans-Bold'</span>,
+  <span class="prop">extraBold</span>: <span class="string">'DMSans-ExtraBold'</span>,
+  <span class="prop">light</span>: <span class="string">'DMSans-Light'</span>,
+  <span class="prop">regular</span>: <span class="string">'DMSans-Regular'</span>,
+  <span class="prop">medium</span>: <span class="string">'DMSans-Medium'</span>,
+  <span class="prop">semiBold</span>: <span class="string">'DMSans-SemiBold'</span>,
+};</div>
+
+            <h3>2. Colores del Tema</h3>
+            <p>Usa los colores del tema en lugar de valores hardcodeados:</p>
+            <div class="code-block">
+<span class="comment">// En lugar de:</span>
+&lt;<span class="component">Text</span> <span class="prop">color</span>=<span class="string">"#007AFF"</span>&gt;Texto&lt;/<span class="component">Text</span>&gt;
+
+<span class="comment">// Usa:</span>
+&lt;<span class="component">Text</span> <span class="prop">color</span>=<span class="string">"primary.500"</span>&gt;Texto&lt;/<span class="component">Text</span>&gt;
+&lt;<span class="component">Text</span> <span class="prop">color</span>=<span class="string">"accent.600"</span>&gt;Texto&lt;/<span class="component">Text</span>&gt;</div>
+
+            <h3>3. Tema Personalizado</h3>
+            <p>Puedes pasar un tema personalizado al ThemeProvider:</p>
+            <div class="code-block">
+<span class="keyword">const</span> <span class="prop">customTheme</span> = {
+  <span class="prop">components</span>: {
+    <span class="prop">Text</span>: {
+      <span class="prop">baseStyle</span>: {
+        <span class="prop">fontFamily</span>: <span class="string">'CustomFont'</span>,
+        <span class="prop">color</span>: <span class="string">'#333333'</span>,
+      },
+      <span class="prop">variants</span>: {
+        <span class="comment">// Tus variantes personalizadas</span>
+      },
+      <span class="prop">defaultProps</span>: {
+        <span class="prop">variant</span>: <span class="string">'lg'</span>,
+      },
+    },
+  },
+};
+
+&lt;<span class="component">ThemeProvider</span> <span class="prop">customTheme</span>={customTheme}&gt;
+  &lt;<span class="component">App</span> /&gt;
+&lt;/<span class="component">ThemeProvider</span>&gt;</div>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: Componente base Text</li>
+                <li><code>ThemeProvider</code>: Proveedor de tema necesario</li>
+                <li><code>expo-font</code>: Para cargar fuentes DM Sans</li>
+            </ul>
+
+            <h3>Sistema de Tema</h3>
+            <p>
+                El componente se conecta automáticamente al <code>ThemeProvider</code> y obtiene la configuración 
+                de texto desde <code>theme.components.Text</code>. Si no encuentra el tema, usa estilos por defecto.
+            </p>
+
+            <h3>Orden de Prioridad de Estilos</h3>
+            <ol style="line-height: 2; padding-left: 20px;">
+                <li>Base style del tema</li>
+                <li>Variant style seleccionado</li>
+                <li>Props de TextStyle pasadas directamente</li>
+                <li>Style prop (mayor prioridad)</li>
+            </ol>
+
+            <h3>Integración con el Tema</h3>
+            <p>El componente Text se integra automáticamente con:</p>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🎨 <strong>Colores del tema</strong>: Usa <code>theme.colors</code> para colores consistentes</li>
+                <li>🔤 <strong>Fuentes del tema</strong>: Aplica las fuentes DM Sans configuradas</li>
+                <li>📏 <strong>Espaciado</strong>: Respeta el sistema de espaciado del tema</li>
+                <li>🎯 <strong>Variantes</strong>: Utiliza las variantes predefinidas del tema</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Text</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

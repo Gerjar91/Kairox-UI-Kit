@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración del Tema - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #70c0f5;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .step {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #70c0f5;
+        }
+
+        .step h3 {
+            color: #33729E;
+            margin-bottom: 15px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .color-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 40px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: #33729E;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #2a5f85;
+            transform: translateY(-2px);
+        }
+
+        .tip {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .tip h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Configuración del Tema</h1>
+            <p>Guía completa para configurar Kairox UI Kit en tu aplicación React Native</p>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver a la Documentación</a>
+
+        <div class="section">
+            <h2>1. Instalación de Dependencias</h2>
+            <p>Kairox UI Kit requiere algunas dependencias adicionales que no vienen por defecto con Expo:</p>
+            
+            <div class="code-block">npm install @expo/vector-icons expo-font react-native-keyboard-controller</div>
+            
+            <div class="tip">
+                <h4>💡 Nota Importante</h4>
+                <p>Estas dependencias son necesarias para el funcionamiento completo de los componentes. @expo/vector-icons para los iconos, expo-font para las fuentes personalizadas, y react-native-keyboard-controller para el manejo del teclado.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Configuración de Fuentes</h2>
+            <p>Kairox UI Kit utiliza la familia tipográfica ComicNeue. Debes cargar estas fuentes en tu aplicación:</p>
+            
+            <div class="step">
+                <h3>Paso 1: Importar las fuentes</h3>
+                <p>En tu archivo <code>App.tsx</code>, importa las fuentes:</p>
+                <div class="code-block">import { useFonts } from 'expo-font';
+import { bold, boldItalic, italic, light, lightItalic, regular } from './src/theme/Fonts';</div>
+            </div>
+
+            <div class="step">
+                <h3>Paso 2: Cargar las fuentes</h3>
+                <p>Dentro de tu componente App, carga las fuentes:</p>
+                <div class="code-block">export default function App() {
+  const [fontsLoaded] = useFonts({
+    'ComicNeue-Bold': bold,
+    'ComicNeue-BoldItalic': boldItalic,
+    'ComicNeue-Italic': italic,
+    'ComicNeue-Light': light,
+    'ComicNeue-LightItalic': lightItalic,
+    'ComicNeue-Regular': regular,
+  });
+
+  if (!fontsLoaded) {
+    return null; // O un componente de carga
+  }
+
+  return (
+    // Tu aplicación aquí
+  );
+}</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Configuración del ThemeProvider</h2>
+            <p>Envuelve tu aplicación con el ThemeProvider para que todos los componentes tengan acceso al tema:</p>
+            
+            <div class="step">
+                <h3>Importar ThemeProvider</h3>
+                <div class="code-block">import { ThemeProvider } from './src/theme/ThemeProvider';</div>
+            </div>
+
+            <div class="step">
+                <h3>Envolver la aplicación</h3>
+                <div class="code-block">export default function App() {
+  const [fontsLoaded] = useFonts({
+    // ... fuentes configuradas
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;YourMainComponent /&gt;
+    &lt;/ThemeProvider&gt;
+  );
+}</div>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>4. Uso Básico</h2>
+            <p>Una vez configurado el tema, puedes usar los componentes directamente:</p>
+            
+            <div class="code-block">import { Text, Button, Badge } from 'kairox-ui-kit';
+
+export default function MyComponent() {
+  return (
+    &lt;&gt;
+      &lt;Text variant="lg"&gt;Mi texto con tema&lt;/Text&gt;
+      &lt;Button variant="solid"&gt;Mi botón&lt;/Button&gt;
+      &lt;Badge variant="success"&gt;Estado&lt;/Badge&gt;
+    &lt;/&gt;
+  );
+}</div>
+        </div>
+
+        <div class="section">
+            <h2>5. Personalización del Tema</h2>
+            <p>Puedes personalizar el tema pasando un objeto de tema personalizado al ThemeProvider:</p>
+            
+            <div class="code-block">const customTheme = {
+  colors: {
+    primary: {
+      500: '#your-color',
+    },
+    // ... otros colores personalizados
+  }
+};
+
+&lt;ThemeProvider customTheme={customTheme}&gt;
+  &lt;YourApp /&gt;
+&lt;/ThemeProvider&gt;</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Configuración del Tema</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>

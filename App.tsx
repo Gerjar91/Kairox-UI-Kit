@@ -5,6 +5,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import ThemeProvider from './src/theme/ThemeProvider';
 import { useFonts } from 'expo-font';
 import { bold, boldItalic, italic, light, lightItalic, regular } from './src/theme/Fonts';
+import theme from './src/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,7 +27,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ThemeProvider>
+      <ThemeProvider
+        customTheme={theme}>
       <KeyboardProvider>
         <HomeContainer />
       </KeyboardProvider>

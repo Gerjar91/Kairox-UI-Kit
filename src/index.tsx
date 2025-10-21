@@ -6,7 +6,6 @@ import {
 } from '@expo/vector-icons';
 
 import {
-    View,
     Text,
     Badge,
     Switch,
@@ -20,7 +19,8 @@ import {
     Header,
     CustomStatusBar,
     BoxContent,
-    Button
+    Button,
+    View
 } from './UI';
 
 const HomeContainer = () => {
@@ -30,6 +30,7 @@ const HomeContainer = () => {
     const [switch3, setSwitch3] = React.useState(false);
     const [checkbox1, setCheckbox1] = React.useState(false);
     const [checkbox2, setCheckbox2] = React.useState(true);
+    console.log("aca");
 
     return (
         <BoxContainer backgroundColor='#F5F5F5'>

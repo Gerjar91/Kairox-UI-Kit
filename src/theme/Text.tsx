@@ -11,8 +11,8 @@ const baseStyle = {
 export const variants = {
   xs: {
     fontSize: 12,
-    fontFamily: Fonts.regular,
-    fontWeight: '400' as const,
+    fontFamily: Fonts.light,
+    fontWeight: '300' as const,
     color: '#4B5563', 
   },
   sm: {
@@ -23,27 +23,33 @@ export const variants = {
   },
   md: {
     fontSize: 16,
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.regular,
+    fontWeight: '400' as const,
   },
   lg: {
     fontSize: 18,
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.regular,
+    fontWeight: '400' as const,
   },
   xl: {
     fontSize: 20,
-    fontFamily: Fonts.semiBold,
+    fontFamily: Fonts.bold,
+    fontWeight: '700' as const,
   },
   '2xl': {
     fontSize: 24,
     fontFamily: Fonts.bold,
+    fontWeight: '700' as const,
   },
   '3xl': {
     fontSize: 30,
     fontFamily: Fonts.bold,
+    fontWeight: '700' as const,
   },
   '4xl': {
     fontSize: 36,
-    fontFamily: Fonts.extraBold,
+    fontFamily: Fonts.bold,
+    fontWeight: '700' as const,
   },
 };
 

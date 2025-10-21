@@ -1,25 +1,25 @@
-import bold from '../../assets/fonts/DMSans-Bold.ttf';
-import extraBold from '../../assets/fonts/DMSans-ExtraBold.ttf';
-import light from '../../assets/fonts/DMSans-Light.ttf';
-import regular from '../../assets/fonts/DMSans-Regular.ttf';
-import medium from '../../assets/fonts/DMSans-Medium.ttf';
-import semiBold from '../../assets/fonts/DMSans-SemiBold.ttf';
+import bold from '../../assets/fonts/ComicNeue-Bold.ttf';
+import boldItalic from '../../assets/fonts/ComicNeue-BoldItalic.ttf';
+import italic from '../../assets/fonts/ComicNeue-Italic.ttf';
+import light from '../../assets/fonts/ComicNeue-Light.ttf';
+import lightItalic from '../../assets/fonts/ComicNeue-LightItalic.ttf';
+import regular from '../../assets/fonts/ComicNeue-Regular.ttf';
 
 const Fonts = {
-  bold: 'DMSans-Bold',
-  extraBold: 'DMSans-ExtraBold',
-  light: 'DMSans-Light',
-  regular: 'DMSans-Regular',
-  medium: 'DMSans-Medium',
-  semiBold: 'DMSans-SemiBold',
+    bold: 'ComicNeue-Bold',
+    boldItalic: 'ComicNeue-BoldItalic',
+    italic: 'ComicNeue-Italic',
+    light: 'ComicNeue-Light',
+    lightItalic: 'ComicNeue-LightItalic',
+    regular: 'ComicNeue-Regular',
 };
 
 export { 
   bold,
-  extraBold,
+    boldItalic,
+    italic,
   light, 
-  regular, 
-  medium,
-  semiBold
+    lightItalic,
+    regular
 };
 export default Fonts;

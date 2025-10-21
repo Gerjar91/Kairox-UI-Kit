@@ -4,16 +4,16 @@ import HomeContainer from './src';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import ThemeProvider from './src/theme/ThemeProvider';
 import { useFonts } from 'expo-font';
-import { bold, extraBold, light, regular, medium, semiBold } from './src/theme/Fonts';
+import { bold, boldItalic, italic, light, lightItalic, regular } from './src/theme/Fonts';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    'DMSans-Bold': bold,
-    'DMSans-ExtraBold': extraBold,
-    'DMSans-Light': light,
-    'DMSans-Regular': regular,
-    'DMSans-Medium': medium,
-    'DMSans-SemiBold': semiBold,
+    'ComicNeue-Bold': bold,
+    'ComicNeue-BoldItalic': boldItalic,
+    'ComicNeue-Italic': italic,
+    'ComicNeue-Light': light,
+    'ComicNeue-LightItalic': lightItalic,
+    'ComicNeue-Regular': regular,
   });
 
   if (!fontsLoaded) {

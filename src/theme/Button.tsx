@@ -13,7 +13,7 @@ const baseStyle: ViewStyle = {
 
 const baseTextStyle: TextStyle = {
   fontSize: 16,
-  fontFamily: Fonts.semiBold,
+    fontFamily: Fonts.regular,
   textAlign: 'center',
 };
 
@@ -39,7 +39,7 @@ export const variants = {
     },
     text: {
       color: '#007AFF',
-      fontFamily: Fonts.medium,
+        fontFamily: Fonts.bold,
     }
   },
   link: {

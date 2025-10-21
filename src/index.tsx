@@ -58,7 +58,7 @@ const HomeContainer = () => {
                         Título 4XL
                     </Text>
                     <Text variant='3xl' marginBottom={8}>
-                        Título 3XL
+                        Texto 3XL
                     </Text>
                     <Text variant='2xl' marginBottom={8}>
                         Título 2XL

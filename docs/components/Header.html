@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Component - Kairox UI Kit</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 700; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .component { color: #4ec9b0; }
+        .prop { color: #9cdcfe; }
+        .comment { color: #6a9955; }
+        .table-container { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td { padding: 15px; border-bottom: 1px solid #e0e0e0; }
+        tr:hover { background: #f8f9fa; }
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .tip strong { color: #e67e22; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Header Component</h1>
+            <p>Cabecera de navegación con título, botón back y acciones personalizables</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Header</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Header</code> proporciona una barra de navegación consistente con soporte para 
+                título, botón de retroceso (back button con chevron-left), icono derecho personalizable y altura ajustable.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> El Header incluye RemovableView que oculta automáticamente los iconos 
+                cuando no hay callback definido, manteniendo el layout limpio.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>title</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Título del header</td>
+                        </tr>
+                        <tr>
+                            <td><strong>onLeftPress</strong></td>
+                            <td><span class="type">() => void</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Callback del botón izquierdo (back)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>rightIcon</strong></td>
+                            <td><span class="type">React.ReactNode</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Icono o elemento derecho</td>
+                        </tr>
+                        <tr>
+                            <td><strong>onRightPress</strong></td>
+                            <td><span class="type">() => void</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Callback del botón derecho</td>
+                        </tr>
+                        <tr>
+                            <td><strong>children</strong></td>
+                            <td><span class="type">React.ReactNode</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Contenido personalizado (reemplaza title)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>backgroundColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'transparent'</code></td>
+                            <td>Color de fondo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>height</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>60</code></td>
+                            <td>Altura del header</td>
+                        </tr>
+                        <tr>
+                            <td><strong>colorIcon</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'black'</code></td>
+                            <td>Color de los iconos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>sizeIcon</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>40</code></td>
+                            <td>Tamaño del icono back</td>
+                        </tr>
+                        <tr>
+                            <td><strong>titleStyle</strong></td>
+                            <td><span class="type">TextStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos del título</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos del contenedor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>...ViewStyle</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Props de estilo adicionales</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Header básico con botón back</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Header</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">Header</span>
+  <span class="prop">title</span>=<span class="string">"Mi Pantalla"</span>
+  <span class="prop">onLeftPress</span>={() => navigation.goBack()}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con icono derecho</div>
+                <div class="code-block">
+<span class="keyword">import</span> { MaterialCommunityIcons } <span class="keyword">from</span> <span class="string">'@expo/vector-icons'</span>;
+
+&lt;<span class="component">Header</span>
+  <span class="prop">title</span>=<span class="string">"Configuración"</span>
+  <span class="prop">onLeftPress</span>={() => navigation.goBack()}
+  <span class="prop">rightIcon</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"dots-vertical"</span> <span class="prop">size</span>={<span class="string">24</span>} /&gt;}
+  <span class="prop">onRightPress</span>={() => showMenu()}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Header con fondo de color</div>
+                <div class="code-block">
+&lt;<span class="component">Header</span>
+  <span class="prop">title</span>=<span class="string">"Perfil"</span>
+  <span class="prop">onLeftPress</span>={() => navigation.goBack()}
+  <span class="prop">backgroundColor</span>=<span class="string">"#33729E"</span>
+  <span class="prop">colorIcon</span>=<span class="string">"white"</span>
+  <span class="prop">titleStyle</span>={{ color: <span class="string">'white'</span> }}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Header con contenido personalizado</div>
+                <div class="code-block">
+&lt;<span class="component">Header</span>
+  <span class="prop">onLeftPress</span>={() => navigation.goBack()}
+  <span class="prop">backgroundColor</span>=<span class="string">"white"</span>
+&gt;
+  &lt;<span class="component">View</span> <span class="prop">style</span>={{ alignItems: <span class="string">'center'</span> }}&gt;
+    &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"xl"</span>&gt;Mi Logo&lt;/<span class="component">Text</span>&gt;
+    &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"xs"</span>&gt;Subtítulo&lt;/<span class="component">Text</span>&gt;
+  &lt;/<span class="component">View</span>&gt;
+&lt;/<span class="component">Header</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Pantalla con header completo</div>
+                <div class="code-block">
+<span class="keyword">const</span> DetailsScreen = () => (
+  &lt;<span class="component">BoxContainer</span>&gt;
+    &lt;<span class="component">Header</span>
+      <span class="prop">title</span>=<span class="string">"Detalles del Producto"</span>
+      <span class="prop">onLeftPress</span>={() => navigation.goBack()}
+      <span class="prop">rightIcon</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"heart-outline"</span> <span class="prop">size</span>={<span class="string">24</span>} /&gt;}
+      <span class="prop">onRightPress</span>={toggleFavorite}
+      <span class="prop">backgroundColor</span>=<span class="string">"white"</span>
+    /&gt;
+    
+    &lt;<span class="component">BoxContent</span>&gt;
+      <span class="comment">{/* Contenido de la pantalla */}</span>
+    &lt;/<span class="component">BoxContent</span>&gt;
+  &lt;/<span class="component">BoxContainer</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Header sin botón back</div>
+                <div class="code-block">
+<span class="comment">// Solo título (pantalla principal)</span>
+&lt;<span class="component">Header</span>
+  <span class="prop">title</span>=<span class="string">"Inicio"</span>
+  <span class="prop">rightIcon</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"bell"</span> <span class="prop">size</span>={<span class="string">24</span>} /&gt;}
+  <span class="prop">onRightPress</span>={() => navigation.navigate(<span class="string">'Notifications'</span>)}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Header con altura personalizada</div>
+                <div class="code-block">
+&lt;<span class="component">Header</span>
+  <span class="prop">title</span>=<span class="string">"Título"</span>
+  <span class="prop">onLeftPress</span>={() => navigation.goBack()}
+  <span class="prop">height</span>={<span class="string">80</span>}
+  <span class="prop">backgroundColor</span>=<span class="string">"#F8F9FA"</span>
+/&gt;</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🧭 <strong>Navegación:</strong> Pantallas con botón back</li>
+                <li>📱 <strong>Pantallas de detalle:</strong> Productos, perfiles, artículos</li>
+                <li>⚙️ <strong>Configuración:</strong> Headers con menú de opciones</li>
+                <li>✏️ <strong>Edición:</strong> Headers con botón guardar o cancelar</li>
+                <li>🔍 <strong>Búsqueda:</strong> Headers con barra de búsqueda personalizada</li>
+                <li>📊 <strong>Dashboards:</strong> Headers con filtros o acciones</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🎯 Usa siempre el botón back en pantallas secundarias</li>
+                <li>📏 Mantén la altura consistente en toda la app (60px es estándar)</li>
+                <li>🎨 Usa colores que contrasten bien con el contenido</li>
+                <li>♿ Asegura que los iconos sean fácilmente táctiles (40px mínimo)</li>
+                <li>📱 Limita las acciones del header a 1-2 botones</li>
+                <li>💬 Usa títulos descriptivos pero concisos</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Estructura</h3>
+            <p>El header está dividido en tres secciones:</p>
+            <ul style="line-height: 2;">
+                <li><strong>leftContainer:</strong> Contiene el botón back (chevron-left)</li>
+                <li><strong>centerContainer:</strong> Contiene el título o children personalizado</li>
+                <li><strong>rightContainer:</strong> Contiene el icono/acción derecha</li>
+            </ul>
+
+            <h3>RemovableView</h3>
+            <p>
+                El componente usa <code>RemovableView</code> internamente para ocultar automáticamente 
+                los contenedores left y right cuando no hay callback definido, evitando espacios vacíos.
+            </p>
+
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2;">
+                <li><code>@expo/vector-icons</code>: Para el icono MaterialCommunityIcons chevron-left</li>
+                <li><code>Icon</code>: Componente de icono del UI Kit</li>
+                <li><code>RemovableView</code>: Componente interno del UI Kit</li>
+            </ul>
+        </div>
+
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Header</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

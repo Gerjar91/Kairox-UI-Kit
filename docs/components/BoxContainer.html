@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoxContainer Component - Kairox UI Kit</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 700; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .component { color: #4ec9b0; }
+        .prop { color: #9cdcfe; }
+        .comment { color: #6a9955; }
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .tip strong { color: #e67e22; }
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BoxContainer Component</h1>
+            <p>Contenedor flex con backgroundColor personalizable - Patrón de diseño recomendado</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">BoxContainer</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                <code>BoxContainer</code> es un contenedor simple con <code>flex: 1</code> y un color de fondo personalizable. 
+                Según las preferencias del usuario, este componente se usa junto con <code>BoxContent</code> para estructurar pantallas.
+            </p>
+            <div class="tip">
+                <strong>💡 Patrón:</strong> BoxContainer se usa como contenedor principal de la pantalla, 
+                mientras que BoxContent maneja el contenido scrollable con teclado.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <ul style="line-height: 2;">
+                <li><strong>backgroundColor</strong> (string, opcional): Color de fondo. Por defecto: <code>'white'</code></li>
+                <li><strong>children</strong> (React.ReactNode): Contenido del contenedor</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>💻 Ejemplos</h2>
+
+            <div class="example">
+                <div class="example-title">Uso básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">BoxContainer</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> Screen = () => (
+  &lt;<span class="component">BoxContainer</span>&gt;
+    &lt;<span class="component">Text</span>&gt;Contenido de la pantalla&lt;/<span class="component">Text</span>&gt;
+  &lt;/<span class="component">BoxContainer</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con color de fondo personalizado</div>
+                <div class="code-block">
+&lt;<span class="component">BoxContainer</span> <span class="prop">backgroundColor</span>=<span class="string">"#F8F9FA"</span>&gt;
+  &lt;<span class="component">Text</span>&gt;Fondo gris claro&lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">BoxContainer</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Patrón recomendado con BoxContent</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">BoxContainer</span>, <span class="component">BoxContent</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> FormScreen = () => (
+  &lt;<span class="component">BoxContainer</span> <span class="prop">backgroundColor</span>=<span class="string">"white"</span>&gt;
+    &lt;<span class="component">BoxContent</span>&gt;
+      &lt;<span class="comment">{/* Contenido scrollable */}</span>&gt;
+      &lt;<span class="component">Text</span>&gt;Formulario...&lt;/<span class="component">Text</span>&gt;
+    &lt;/<span class="component">BoxContent</span>&gt;
+  &lt;/<span class="component">BoxContainer</span>&gt;
+);</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✅ Cuándo usar</h2>
+            <ul style="line-height: 2;">
+                <li>✨ Como contenedor principal de pantallas</li>
+                <li>🎨 Cuando necesitas un fondo de color específico</li>
+                <li>📱 En combinación con BoxContent para pantallas con formularios</li>
+                <li>🔧 Para mantener consistencia en la estructura de pantallas</li>
+            </ul>
+        </div>
+
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente BoxContainer</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

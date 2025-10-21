@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Accordion Component</h1>
+            <p>Contenido expandible y colapsable con animaciones suaves</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+            <span class="badge">Animated</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Accordion</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Accordion</code> permite mostrar y ocultar contenido de forma expandible. 
+                Incluye animaciones suaves para el despliegue/colapso del contenido y rotación del icono 
+                indicador. Perfecto para FAQs, menús complejos y organización de información.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Los accordions son ideales para ahorrar espacio en pantalla mientras 
+                mantienes la información accesible. Son especialmente útiles en móviles donde el espacio es limitado.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>title</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td>-</td>
+                            <td>Título del accordion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>children</strong></td>
+                            <td><span class="type">React.ReactNode</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td>-</td>
+                            <td>Contenido que se muestra/oculta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>defaultExpanded</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>false</code></td>
+                            <td>Si debe estar expandido inicialmente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>onToggle</strong></td>
+                            <td><span class="type">(isExpanded: boolean) => void</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Callback cuando se expande/colapsa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos del contenedor principal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>headerStyle</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos del header/título</td>
+                        </tr>
+                        <tr>
+                            <td><strong>titleStyle</strong></td>
+                            <td><span class="type">TextStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos del texto del título</td>
+                        </tr>
+                        <tr>
+                            <td><strong>contentStyle</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos del contenido expandible</td>
+                        </tr>
+                        <tr>
+                            <td><strong>iconColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'black'</code></td>
+                            <td>Color del icono de chevron</td>
+                        </tr>
+                        <tr>
+                            <td><strong>iconSize</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>20</code></td>
+                            <td>Tamaño del icono</td>
+                        </tr>
+                        <tr>
+                            <td><strong>leftIcon</strong></td>
+                            <td><span class="type">React.ReactElement</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Icono a la izquierda del título</td>
+                        </tr>
+                        <tr>
+                            <td><strong>...ViewStyle</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Props de estilo adicionales</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ejemplos -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Ejemplo básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Accordion</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">Accordion</span> <span class="prop">title</span>=<span class="string">"¿Qué es React Native?"</span>&gt;
+  &lt;<span class="component">Text</span>&gt;
+    React Native es un framework para construir aplicaciones
+    móviles usando React y JavaScript.
+  &lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">Accordion</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Expandido por defecto</div>
+                <div class="code-block">
+&lt;<span class="component">Accordion</span> 
+  <span class="prop">title</span>=<span class="string">"Información importante"</span>
+  <span class="prop">defaultExpanded</span>={<span class="keyword">true</span>}
+&gt;
+  &lt;<span class="component">Text</span>&gt;Este contenido estará visible al cargar.&lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">Accordion</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con callback de toggle</div>
+                <div class="code-block">
+&lt;<span class="component">Accordion</span>
+  <span class="prop">title</span>=<span class="string">"Click para expandir"</span>
+  <span class="prop">onToggle</span>={(isExpanded) => {
+    <span class="keyword">console</span>.log(<span class="string">`Accordion está ${isExpanded ? 'expandido' : 'colapsado'}`</span>);
+  }}
+&gt;
+  &lt;<span class="component">Text</span>&gt;Contenido del accordion&lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">Accordion</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con icono personalizado</div>
+                <div class="code-block">
+<span class="keyword">import</span> { MaterialCommunityIcons } <span class="keyword">from</span> <span class="string">'@expo/vector-icons'</span>;
+
+&lt;<span class="component">Accordion</span>
+  <span class="prop">title</span>=<span class="string">"Configuración"</span>
+  <span class="prop">leftIcon</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"cog"</span> /&gt;}
+  <span class="prop">iconColor</span>=<span class="string">"#33729E"</span>
+&gt;
+  &lt;<span class="component">Text</span>&gt;Opciones de configuración...&lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">Accordion</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">FAQ Section</div>
+                <div class="code-block">
+<span class="keyword">const</span> FAQ = () => {
+  <span class="keyword">const</span> faqs = [
+    {
+      question: <span class="string">"¿Cómo puedo crear una cuenta?"</span>,
+      answer: <span class="string">"Haz click en el botón 'Registrarse' en la esquina superior derecha..."</span>
+    },
+    {
+      question: <span class="string">"¿Es gratis?"</span>,
+      answer: <span class="string">"Sí, ofrecemos un plan gratuito con funcionalidades básicas..."</span>
+    },
+    {
+      question: <span class="string">"¿Cómo puedo contactar soporte?"</span>,
+      answer: <span class="string">"Puedes contactarnos a través del email support@example.com..."</span>
+    }
+  ];
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span>&gt;
+      &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"2xl"</span> <span class="prop">marginBottom</span>={<span class="string">20</span>}&gt;
+        Preguntas Frecuentes
+      &lt;/<span class="component">Text</span>&gt;
+      
+      {faqs.map((faq, index) => (
+        &lt;<span class="component">Accordion</span>
+          <span class="prop">key</span>={index}
+          <span class="prop">title</span>={faq.question}
+          <span class="prop">style</span>={{ marginBottom: <span class="string">12</span> }}
+        &gt;
+          &lt;<span class="component">Text</span>&gt;{faq.answer}&lt;/<span class="component">Text</span>&gt;
+        &lt;/<span class="component">Accordion</span>&gt;
+      ))}
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con estilos personalizados</div>
+                <div class="code-block">
+&lt;<span class="component">Accordion</span>
+  <span class="prop">title</span>=<span class="string">"Accordion Personalizado"</span>
+  <span class="prop">headerStyle</span>={{
+    backgroundColor: <span class="string">'#33729E'</span>,
+    padding: <span class="string">16</span>,
+    borderRadius: <span class="string">8</span>,
+  }}
+  <span class="prop">titleStyle</span>={{
+    color: <span class="string">'white'</span>,
+    fontSize: <span class="string">18</span>,
+    fontWeight: <span class="string">'bold'</span>,
+  }}
+  <span class="prop">contentStyle</span>={{
+    padding: <span class="string">16</span>,
+    backgroundColor: <span class="string">'#F3F4F6'</span>,
+  }}
+  <span class="prop">iconColor</span>=<span class="string">"white"</span>
+&gt;
+  &lt;<span class="component">Text</span>&gt;Contenido con estilos personalizados&lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">Accordion</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Menú de navegación</div>
+                <div class="code-block">
+<span class="keyword">const</span> NavigationMenu = () => (
+  &lt;<span class="component">View</span>&gt;
+    &lt;<span class="component">Accordion</span> <span class="prop">title</span>=<span class="string">"Cuenta"</span>&gt;
+      &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Mi Perfil"</span> <span class="prop">onPress</span>={goToProfile} /&gt;
+      &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Configuración"</span> <span class="prop">onPress</span>={goToSettings} /&gt;
+      &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Privacidad"</span> <span class="prop">onPress</span>={goToPrivacy} /&gt;
+    &lt;/<span class="component">Accordion</span>&gt;
+
+    &lt;<span class="component">Accordion</span> <span class="prop">title</span>=<span class="string">"Ayuda"</span>&gt;
+      &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Centro de ayuda"</span> <span class="prop">onPress</span>={goToHelp} /&gt;
+      &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Contactar soporte"</span> <span class="prop">onPress</span>={goToSupport} /&gt;
+      &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Reportar problema"</span> <span class="prop">onPress</span>={goToReport} /&gt;
+    &lt;/<span class="component">Accordion</span>&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Información de producto</div>
+                <div class="code-block">
+<span class="keyword">const</span> ProductDetails = () => (
+  &lt;<span class="component">View</span>&gt;
+    &lt;<span class="component">Accordion</span> <span class="prop">title</span>=<span class="string">"Descripción"</span> <span class="prop">defaultExpanded</span>&gt;
+      &lt;<span class="component">Text</span>&gt;
+        Este producto es fabricado con materiales de alta calidad...
+      &lt;/<span class="component">Text</span>&gt;
+    &lt;/<span class="component">Accordion</span>&gt;
+
+    &lt;<span class="component">Accordion</span> <span class="prop">title</span>=<span class="string">"Especificaciones"</span>&gt;
+      &lt;<span class="component">Text</span>&gt;• Dimensiones: 10x20x5 cm&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">Text</span>&gt;• Peso: 500g&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">Text</span>&gt;• Material: Aluminio&lt;/<span class="component">Text</span>&gt;
+    &lt;/<span class="component">Accordion</span>&gt;
+
+    &lt;<span class="component">Accordion</span> <span class="prop">title</span>=<span class="string">"Envío y devoluciones"</span>&gt;
+      &lt;<span class="component">Text</span>&gt;
+        Envío gratis en pedidos mayores a $50...
+      &lt;/<span class="component">Text</span>&gt;
+    &lt;/<span class="component">Accordion</span>&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>❓ <strong>FAQs:</strong> Preguntas frecuentes expandibles</li>
+                <li>📱 <strong>Menús:</strong> Navegación con submenús</li>
+                <li>🛍️ <strong>Productos:</strong> Detalles y especificaciones</li>
+                <li>📋 <strong>Formularios:</strong> Secciones organizadas de formularios largos</li>
+                <li>⚙️ <strong>Configuración:</strong> Grupos de opciones</li>
+                <li>📰 <strong>Artículos:</strong> Tablas de contenido expandibles</li>
+                <li>📊 <strong>Dashboards:</strong> Widgets colapsables</li>
+                <li>📚 <strong>Documentación:</strong> Secciones de ayuda</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>📝 Usa títulos descriptivos y concisos</li>
+                <li>🎯 Agrupa contenido relacionado en el mismo accordion</li>
+                <li>⚡ No anides accordions muy profundamente (máximo 2 niveles)</li>
+                <li>📱 Considera el espacio en móviles - los accordions son ideales aquí</li>
+                <li>🔄 Usa <code>defaultExpanded</code> para contenido importante</li>
+                <li>💬 Proporciona feedback visual claro del estado expandido/colapsado</li>
+                <li>♿ Asegura que el área de click del header sea suficientemente grande</li>
+                <li>📊 No uses accordions para contenido que debe estar siempre visible</li>
+            </ul>
+        </div>
+
+        <!-- Animación -->
+        <div class="section">
+            <h2>✨ Animación</h2>
+            <p>
+                El componente usa dos animaciones paralelas: una para la altura del contenido y otra 
+                para la rotación del icono chevron.
+            </p>
+
+            <div class="code-block">
+Animated.parallel([
+  <span class="comment">// Animación de altura</span>
+  Animated.timing(animatedHeight, {
+    <span class="prop">toValue</span>: newExpandedState ? <span class="string">1</span> : <span class="string">0</span>,
+    <span class="prop">duration</span>: <span class="string">500</span>,
+    <span class="prop">useNativeDriver</span>: <span class="keyword">false</span>,
+  }),
+  <span class="comment">// Animación de rotación del icono</span>
+  Animated.timing(rotateValue, {
+    <span class="prop">toValue</span>: newExpandedState ? <span class="string">1</span> : <span class="string">0</span>,
+    <span class="prop">duration</span>: <span class="string">400</span>,
+    <span class="prop">useNativeDriver</span>: <span class="keyword">true</span>,
+  }),
+]).start();</div>
+
+            <h3>Interpolaciones</h3>
+            <div class="code-block">
+<span class="comment">// Rotación del icono (0° a 180°)</span>
+<span class="keyword">const</span> rotateInterpolate = rotateValue.interpolate({
+  <span class="prop">inputRange</span>: [<span class="string">0</span>, <span class="string">1</span>],
+  <span class="prop">outputRange</span>: [<span class="string">'0deg'</span>, <span class="string">'180deg'</span>],
+});
+
+<span class="comment">// Altura máxima del contenido</span>
+<span class="keyword">const</span> maxHeight = animatedHeight.interpolate({
+  <span class="prop">inputRange</span>: [<span class="string">0</span>, <span class="string">1</span>],
+  <span class="prop">outputRange</span>: [<span class="string">0</span>, <span class="string">1000</span>], <span class="comment">// Altura máxima de 1000px</span>
+});</div>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: View, Text, TouchableOpacity, Animated</li>
+                <li><code>@expo/vector-icons</code>: Ionicons para el chevron</li>
+                <li><code>Icon</code>: Componente de icono del UI Kit</li>
+            </ul>
+
+            <h3>Estado Interno</h3>
+            <p>El componente maneja su propio estado de expandido/colapsado:</p>
+            <div class="code-block">
+<span class="keyword">const</span> [expanded, setExpanded] = useState(defaultExpanded);</div>
+
+            <h3>Limitación de Altura</h3>
+            <p>
+                La altura máxima del contenido está limitada a 1000px. Si necesitas más espacio, 
+                puedes modificar el outputRange en la interpolación de maxHeight.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Accordion</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

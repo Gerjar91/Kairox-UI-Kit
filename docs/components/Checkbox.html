@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 20px 0;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .visual-example-item label {
+            min-width: 120px;
+            font-weight: 600;
+            color: #53565a;
+        }
+
+        /* Checkbox styles */
+        .checkbox-demo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .checkbox-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #D1D5DB;
+            background: white;
+            position: relative;
+        }
+
+        .checkbox-box.checked {
+            background: #007AFF;
+            border-color: #007AFF;
+        }
+
+        .checkbox-box.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Sizes */
+        .checkbox-sm .checkbox-box { width: 18px; height: 18px; font-size: 10px; }
+        .checkbox-md .checkbox-box { width: 24px; height: 24px; font-size: 14px; }
+        .checkbox-lg .checkbox-box { width: 30px; height: 30px; font-size: 18px; }
+
+        .checkbox-rounded .checkbox-box { border-radius: 4px; }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .visual-example-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Checkbox Component</h1>
+            <p>Casillas de verificación personalizables con iconos, etiquetas y múltiples tamaños</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Checkbox</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Checkbox</code> permite a los usuarios seleccionar una o más opciones de un conjunto. 
+                Ofrece 3 tamaños, soporte para iconos personalizados, etiquetas configurables y estados deshabilitados.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Puedes usar iconos personalizados para el checkmark usando la prop <code>icon</code>, 
+                lo que permite crear checkboxes únicos que se alineen con el diseño de tu aplicación.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>checked</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td>-</td>
+                            <td>Estado del checkbox (true = marcado, false = desmarcado)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>onChange</strong></td>
+                            <td><span class="type">(checked: boolean) => void</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td>-</td>
+                            <td>Función que se ejecuta cuando cambia el estado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>size</strong></td>
+                            <td><span class="type">'sm' | 'md' | 'lg'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'md'</code></td>
+                            <td>Tamaño del checkbox</td>
+                        </tr>
+                        <tr>
+                            <td><strong>disabled</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>false</code></td>
+                            <td>Deshabilita el checkbox</td>
+                        </tr>
+                        <tr>
+                            <td><strong>label</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Texto de la etiqueta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>labelPosition</strong></td>
+                            <td><span class="type">'left' | 'right'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'right'</code></td>
+                            <td>Posición de la etiqueta</td>
+                        </tr>
+                        <tr>
+                            <td><strong>activeColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#007AFF'</code></td>
+                            <td>Color de fondo cuando está marcado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>inactiveColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#D1D5DB'</code></td>
+                            <td>Color de fondo cuando está desmarcado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>activeborderColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#007AFF'</code></td>
+                            <td>Color del borde cuando está marcado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>inactiveborderColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#D1D5DB'</code></td>
+                            <td>Color del borde cuando está desmarcado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>rounded</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>false</code></td>
+                            <td>Bordes redondeados</td>
+                        </tr>
+                        <tr>
+                            <td><strong>icon</strong></td>
+                            <td><span class="type">React.ReactElement</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Icono personalizado para el checkmark</td>
+                        </tr>
+                        <tr>
+                            <td><strong>iconColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'white'</code></td>
+                            <td>Color del icono</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tamaños -->
+        <div class="section">
+            <h2>📏 Tamaños</h2>
+            
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Small (sm):</label>
+                    <div class="checkbox-demo checkbox-sm">
+                        <div class="checkbox-box checked"></div>
+                        <span>18x18 px</span>
+                    </div>
+                </div>
+                <div class="visual-example-item">
+                    <label>Medium (md):</label>
+                    <div class="checkbox-demo checkbox-md">
+                        <div class="checkbox-box checked"></div>
+                        <span>24x24 px (por defecto)</span>
+                    </div>
+                </div>
+                <div class="visual-example-item">
+                    <label>Large (lg):</label>
+                    <div class="checkbox-demo checkbox-lg">
+                        <div class="checkbox-box checked"></div>
+                        <span>30x30 px</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Estados</h3>
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Desmarcado:</label>
+                    <div class="checkbox-demo checkbox-md">
+                        <div class="checkbox-box"></div>
+                    </div>
+                </div>
+                <div class="visual-example-item">
+                    <label>Marcado:</label>
+                    <div class="checkbox-demo checkbox-md">
+                        <div class="checkbox-box checked"></div>
+                    </div>
+                </div>
+                <div class="visual-example-item">
+                    <label>Redondeado:</label>
+                    <div class="checkbox-demo checkbox-md checkbox-rounded">
+                        <div class="checkbox-box checked"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Configuración de Tamaños</h3>
+            <div class="code-block">
+<span class="keyword">const</span> <span class="component">sizes</span> = {
+  <span class="prop">sm</span>: {
+    <span class="prop">size</span>: <span class="string">18</span>,
+    <span class="prop">checkmarkSize</span>: <span class="string">10</span>,
+    <span class="prop">borderWidth</span>: <span class="string">1.5</span>,
+    <span class="prop">fontSize</span>: <span class="string">12</span>,
+  },
+  <span class="prop">md</span>: {
+    <span class="prop">size</span>: <span class="string">24</span>,
+    <span class="prop">checkmarkSize</span>: <span class="string">14</span>,
+    <span class="prop">borderWidth</span>: <span class="string">2</span>,
+    <span class="prop">fontSize</span>: <span class="string">14</span>,
+  },
+  <span class="prop">lg</span>: {
+    <span class="prop">size</span>: <span class="string">30</span>,
+    <span class="prop">checkmarkSize</span>: <span class="string">18</span>,
+    <span class="prop">borderWidth</span>: <span class="string">2.5</span>,
+    <span class="prop">fontSize</span>: <span class="string">16</span>,
+  },
+};</div>
+        </div>
+
+        <!-- Ejemplos -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Ejemplo básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { useState } <span class="keyword">from</span> <span class="string">'react'</span>;
+<span class="keyword">import</span> { <span class="component">Checkbox</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> MyComponent = () => {
+  <span class="keyword">const</span> [isChecked, setIsChecked] = useState(<span class="keyword">false</span>);
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">Checkbox</span>
+      <span class="prop">checked</span>={isChecked}
+      <span class="prop">onChange</span>={setIsChecked}
+    /&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con etiqueta</div>
+                <div class="code-block">
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">label</span>=<span class="string">"Acepto los términos y condiciones"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con diferentes tamaños</div>
+                <div class="code-block">
+&lt;<span class="component">Checkbox</span> 
+  <span class="prop">checked</span>={isSmall}
+  <span class="prop">onChange</span>={setIsSmall}
+  <span class="prop">size</span>=<span class="string">"sm"</span>
+  <span class="prop">label</span>=<span class="string">"Pequeño"</span>
+/&gt;
+
+&lt;<span class="component">Checkbox</span> 
+  <span class="prop">checked</span>={isMedium}
+  <span class="prop">onChange</span>={setIsMedium}
+  <span class="prop">size</span>=<span class="string">"md"</span>
+  <span class="prop">label</span>=<span class="string">"Mediano"</span>
+/&gt;
+
+&lt;<span class="component">Checkbox</span> 
+  <span class="prop">checked</span>={isLarge}
+  <span class="prop">onChange</span>={setIsLarge}
+  <span class="prop">size</span>=<span class="string">"lg"</span>
+  <span class="prop">label</span>=<span class="string">"Grande"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Etiqueta a la izquierda</div>
+                <div class="code-block">
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">label</span>=<span class="string">"Suscribirse al newsletter"</span>
+  <span class="prop">labelPosition</span>=<span class="string">"left"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con colores personalizados</div>
+                <div class="code-block">
+<span class="comment">// Checkbox verde</span>
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">activeColor</span>=<span class="string">"#10B981"</span>
+  <span class="prop">activeborderColor</span>=<span class="string">"#10B981"</span>
+  <span class="prop">label</span>=<span class="string">"Completado"</span>
+/&gt;
+
+<span class="comment">// Checkbox morado</span>
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">activeColor</span>=<span class="string">"#33729E"</span>
+  <span class="prop">activeborderColor</span>=<span class="string">"#33729E"</span>
+  <span class="prop">label</span>=<span class="string">"Premium"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Checkbox redondeado</div>
+                <div class="code-block">
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">rounded</span>
+  <span class="prop">label</span>=<span class="string">"Recordarme"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con icono personalizado</div>
+                <div class="code-block">
+<span class="keyword">import</span> { MaterialCommunityIcons } <span class="keyword">from</span> <span class="string">'@expo/vector-icons'</span>;
+
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">icon</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"heart"</span> /&gt;}
+  <span class="prop">iconColor</span>=<span class="string">"white"</span>
+  <span class="prop">activeColor</span>=<span class="string">"#EF4444"</span>
+  <span class="prop">label</span>=<span class="string">"Favorito"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Checkbox deshabilitado</div>
+                <div class="code-block">
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">disabled</span>
+  <span class="prop">label</span>=<span class="string">"No disponible"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Lista de opciones</div>
+                <div class="code-block">
+<span class="keyword">const</span> PreferencesForm = () => {
+  <span class="keyword">const</span> [preferences, setPreferences] = useState({
+    notifications: <span class="keyword">true</span>,
+    newsletter: <span class="keyword">false</span>,
+    updates: <span class="keyword">true</span>,
+    marketing: <span class="keyword">false</span>,
+  });
+
+  <span class="keyword">const</span> updatePreference = (key, value) => {
+    setPreferences(prev => ({ ...prev, [key]: value }));
+  };
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span>&gt;
+      &lt;<span class="component">Checkbox</span>
+        <span class="prop">checked</span>={preferences.notifications}
+        <span class="prop">onChange</span>={(value) => updatePreference(<span class="string">'notifications'</span>, value)}
+        <span class="prop">label</span>=<span class="string">"Notificaciones push"</span>
+      /&gt;
+      &lt;<span class="component">Checkbox</span>
+        <span class="prop">checked</span>={preferences.newsletter}
+        <span class="prop">onChange</span>={(value) => updatePreference(<span class="string">'newsletter'</span>, value)}
+        <span class="prop">label</span>=<span class="string">"Newsletter semanal"</span>
+      /&gt;
+      &lt;<span class="component">Checkbox</span>
+        <span class="prop">checked</span>={preferences.updates}
+        <span class="prop">onChange</span>={(value) => updatePreference(<span class="string">'updates'</span>, value)}
+        <span class="prop">label</span>=<span class="string">"Actualizaciones de producto"</span>
+      /&gt;
+      &lt;<span class="component">Checkbox</span>
+        <span class="prop">checked</span>={preferences.marketing}
+        <span class="prop">onChange</span>={(value) => updatePreference(<span class="string">'marketing'</span>, value)}
+        <span class="prop">label</span>=<span class="string">"Promociones y ofertas"</span>
+      /&gt;
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Formulario de registro</div>
+                <div class="code-block">
+<span class="keyword">const</span> SignUpForm = () => {
+  <span class="keyword">const</span> [agreedToTerms, setAgreedToTerms] = useState(<span class="keyword">false</span>);
+  <span class="keyword">const</span> [agreedToPrivacy, setAgreedToPrivacy] = useState(<span class="keyword">false</span>);
+  <span class="keyword">const</span> [wantsNewsletter, setWantsNewsletter] = useState(<span class="keyword">false</span>);
+
+  <span class="keyword">const</span> canSubmit = agreedToTerms && agreedToPrivacy;
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span>&gt;
+      &lt;<span class="comment">{/* Campos del formulario... */}</span>&gt;
+
+      &lt;<span class="component">View</span> <span class="prop">style</span>={{ marginTop: <span class="string">20</span>, gap: <span class="string">12</span> }}&gt;
+        &lt;<span class="component">Checkbox</span>
+          <span class="prop">checked</span>={agreedToTerms}
+          <span class="prop">onChange</span>={setAgreedToTerms}
+          <span class="prop">label</span>=<span class="string">"Acepto los términos y condiciones"</span>
+          <span class="prop">size</span>=<span class="string">"sm"</span>
+        /&gt;
+        &lt;<span class="component">Checkbox</span>
+          <span class="prop">checked</span>={agreedToPrivacy}
+          <span class="prop">onChange</span>={setAgreedToPrivacy}
+          <span class="prop">label</span>=<span class="string">"Acepto la política de privacidad"</span>
+          <span class="prop">size</span>=<span class="string">"sm"</span>
+        /&gt;
+        &lt;<span class="component">Checkbox</span>
+          <span class="prop">checked</span>={wantsNewsletter}
+          <span class="prop">onChange</span>={setWantsNewsletter}
+          <span class="prop">label</span>=<span class="string">"Quiero recibir el newsletter"</span>
+          <span class="prop">size</span>=<span class="string">"sm"</span>
+          <span class="prop">activeColor</span>=<span class="string">"#10B981"</span>
+        /&gt;
+      &lt;/<span class="component">View</span>&gt;
+
+      &lt;<span class="component">Button</span>
+        <span class="prop">title</span>=<span class="string">"Registrarse"</span>
+        <span class="prop">disabled</span>={!canSubmit}
+        <span class="prop">onPress</span>={handleSubmit}
+      /&gt;
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>📝 <strong>Formularios:</strong> Aceptar términos, condiciones, políticas</li>
+                <li>⚙️ <strong>Configuración:</strong> Activar/desactivar múltiples opciones</li>
+                <li>🎯 <strong>Filtros:</strong> Selección múltiple en búsquedas y filtros</li>
+                <li>📋 <strong>Listas de tareas:</strong> Marcar tareas completadas</li>
+                <li>✅ <strong>Selección múltiple:</strong> Elegir varios items de una lista</li>
+                <li>🔐 <strong>Permisos:</strong> Solicitar permisos de la app</li>
+                <li>📧 <strong>Preferencias:</strong> Suscripciones a newsletters o notificaciones</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🏷️ Siempre incluye una etiqueta descriptiva con el checkbox</li>
+                <li>📍 Coloca la etiqueta a la derecha del checkbox (convención estándar)</li>
+                <li>♿ Asegura un área táctil mínima de 44x44 puntos</li>
+                <li>📏 Usa tamaño 'md' para la mayoría de casos, 'sm' para opciones secundarias</li>
+                <li>🎨 Usa colores verdes para indicar "completado" o "éxito"</li>
+                <li>🔄 Los cambios deben reflejarse inmediatamente</li>
+                <li>📱 Agrupa checkboxes relacionados visualmente</li>
+                <li>💬 Usa texto claro y conciso en las etiquetas</li>
+                <li>⚠️ Valida los checkboxes requeridos antes de enviar formularios</li>
+            </ul>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: TouchableOpacity, View, Text</li>
+                <li><code>Icon</code>: Componente de icono del UI Kit (para iconos personalizados)</li>
+            </ul>
+
+            <h3>Estados</h3>
+            <p>El componente Checkbox es controlado, lo que significa que debes gestionar su estado externamente:</p>
+            <div class="code-block">
+<span class="comment">// Estado manejado por el componente padre</span>
+<span class="keyword">const</span> [checked, setChecked] = useState(<span class="keyword">false</span>);
+
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={checked}
+  <span class="prop">onChange</span>={setChecked}
+/&gt;</div>
+
+            <h3>Icono Personalizado</h3>
+            <p>Cuando usas la prop <code>icon</code>, el componente renderiza ese icono cuando está marcado:</p>
+            <div class="code-block">
+{icon && checked && (
+  &lt;<span class="component">Icon</span>
+    <span class="prop">color</span>={iconColor}
+    <span class="prop">size</span>={sizeValues.checkmarkSize}
+    <span class="prop">as</span>={icon}
+  /&gt;
+)}</div>
+        </div>
+
+        <!-- Accesibilidad -->
+        <div class="section">
+            <h2>♿ Accesibilidad</h2>
+            <p>Mejora la accesibilidad de tus checkboxes:</p>
+            
+            <div class="code-block">
+&lt;<span class="component">Checkbox</span>
+  <span class="prop">checked</span>={isChecked}
+  <span class="prop">onChange</span>={setIsChecked}
+  <span class="prop">label</span>=<span class="string">"Acepto los términos"</span>
+  <span class="prop">accessible</span>={<span class="keyword">true</span>}
+  <span class="prop">accessibilityRole</span>=<span class="string">"checkbox"</span>
+  <span class="prop">accessibilityState</span>={{ checked: isChecked }}
+  <span class="prop">accessibilityLabel</span>=<span class="string">"Aceptar términos y condiciones"</span>
+/&gt;</div>
+
+            <h3>Recomendaciones</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>Usa etiquetas descriptivas que expliquen claramente la opción</li>
+                <li>Asegura suficiente contraste entre el checkbox y el fondo</li>
+                <li>El área táctil debe ser fácil de presionar (mínimo 44x44)</li>
+                <li>Agrupa checkboxes relacionados con un título o descripción</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Checkbox</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

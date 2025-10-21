@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CustomStatusBar Component - Kairox UI Kit</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 700; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .component { color: #4ec9b0; }
+        .prop { color: #9cdcfe; }
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .tip strong { color: #e67e22; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CustomStatusBar Component</h1>
+            <p>Barra de estado personalizable con SafeAreaView integrado</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">CustomStatusBar</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                <code>CustomStatusBar</code> es un wrapper del StatusBar nativo que incluye SafeAreaView automáticamente. 
+                Simplifica la configuración de la barra de estado en tu aplicación.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Coloca este componente al inicio de tu App o en cada pantalla 
+                que necesite un estilo de status bar diferente.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <p>Acepta todas las props de <code>StatusBar</code> de React Native, incluyendo:</p>
+            <ul style="line-height: 2;">
+                <li><strong>backgroundColor</strong> (string): Color de fondo de la status bar (Android)</li>
+                <li><strong>barStyle</strong> ('default' | 'light-content' | 'dark-content'): Estilo del contenido</li>
+                <li><strong>hidden</strong> (boolean): Si debe estar oculta</li>
+                <li><strong>translucent</strong> (boolean): Si es translúcida (Android)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>💻 Ejemplos</h2>
+
+            <div class="example">
+                <div class="example-title">Status bar claro</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">CustomStatusBar</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">CustomStatusBar</span> 
+  <span class="prop">backgroundColor</span>=<span class="string">"white"</span>
+  <span class="prop">barStyle</span>=<span class="string">"dark-content"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Status bar oscuro</div>
+                <div class="code-block">
+&lt;<span class="component">CustomStatusBar</span> 
+  <span class="prop">backgroundColor</span>=<span class="string">"#1F2937"</span>
+  <span class="prop">barStyle</span>=<span class="string">"light-content"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">En App.tsx</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">CustomStatusBar</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">export default function</span> App() {
+  <span class="keyword">return</span> (
+    &lt;&gt;
+      &lt;<span class="component">CustomStatusBar</span> 
+        <span class="prop">backgroundColor</span>=<span class="string">"#33729E"</span>
+        <span class="prop">barStyle</span>=<span class="string">"light-content"</span>
+      /&gt;
+      &lt;<span class="component">AppNavigator</span> /&gt;
+    &lt;/&gt;
+  );
+}</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Translúcida (Android)</div>
+                <div class="code-block">
+&lt;<span class="component">CustomStatusBar</span> 
+  <span class="prop">backgroundColor</span>=<span class="string">"transparent"</span>
+  <span class="prop">barStyle</span>=<span class="string">"light-content"</span>
+  <span class="prop">translucent</span>
+/&gt;</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎨 Estilos Comunes</h2>
+
+            <div class="code-block">
+<span class="comment">// Tema claro</span>
+&lt;<span class="component">CustomStatusBar</span> 
+  <span class="prop">backgroundColor</span>=<span class="string">"white"</span>
+  <span class="prop">barStyle</span>=<span class="string">"dark-content"</span>
+/&gt;
+
+<span class="comment">// Tema oscuro</span>
+&lt;<span class="component">CustomStatusBar</span> 
+  <span class="prop">backgroundColor</span>=<span class="string">"#000000"</span>
+  <span class="prop">barStyle</span>=<span class="string">"light-content"</span>
+/&gt;
+
+<span class="comment">// Color de marca</span>
+&lt;<span class="component">CustomStatusBar</span> 
+  <span class="prop">backgroundColor</span>=<span class="string">"#33729E"</span>
+  <span class="prop">barStyle</span>=<span class="string">"light-content"</span>
+/&gt;</div>
+        </div>
+
+        <div class="section">
+            <h2>📝 Notas</h2>
+            <ul style="line-height: 2;">
+                <li><strong>iOS:</strong> backgroundColor no tiene efecto, solo barStyle</li>
+                <li><strong>Android:</strong> backgroundColor cambia el color de la status bar</li>
+                <li><strong>SafeAreaView:</strong> Se incluye automáticamente para respetar el notch</li>
+            </ul>
+        </div>
+
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente CustomStatusBar</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

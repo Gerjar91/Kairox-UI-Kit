@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 20px 0;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .visual-example-item label {
+            min-width: 120px;
+            font-weight: 600;
+            color: #53565a;
+        }
+
+        .icon-showcase {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        .warning {
+            background: #ffebee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning strong {
+            color: #c62828;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .visual-example-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Icon Component</h1>
+            <p>Wrapper universal para iconos con soporte de colores y tamaños personalizables</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Icon</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+            
+            <h3>Dependencias de Iconos</h3>
+            <p>El componente Icon funciona con cualquier librería de iconos de React Native. Las más comunes son:</p>
+            <div class="code-block">
+<span class="comment"># Expo Vector Icons (recomendado para Expo)</span>
+npx expo install @expo/vector-icons
+
+<span class="comment"># React Native Vector Icons</span>
+npm install react-native-vector-icons</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Icon</code> es un wrapper universal que te permite usar cualquier icono de 
+                cualquier librería (MaterialCommunityIcons, Ionicons, FontAwesome, etc.) con una API consistente 
+                y personalizable. Simplifica el manejo de colores, tamaños y estilos.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Este componente usa la técnica de cloneElement de React para modificar 
+                las props del icono que le pases, permitiendo personalización sin importar la librería de iconos que uses.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>as</strong></td>
+                            <td><span class="type">ReactElement</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td>-</td>
+                            <td>El componente de icono a renderizar (ej: &lt;MaterialCommunityIcons name="heart" /&gt;)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>color</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#5E5E5E'</code></td>
+                            <td>Color del icono</td>
+                        </tr>
+                        <tr>
+                            <td><strong>size</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>24</code></td>
+                            <td>Tamaño del icono en píxeles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados para el contenedor del icono</td>
+                        </tr>
+                        <tr>
+                            <td><strong>...ViewStyle</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Props de estilo como margin, padding, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ejemplos -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Ejemplo básico con MaterialCommunityIcons</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Icon</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+<span class="keyword">import</span> { MaterialCommunityIcons } <span class="keyword">from</span> <span class="string">'@expo/vector-icons'</span>;
+
+&lt;<span class="component">Icon</span> 
+  <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"heart"</span> /&gt;}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con color y tamaño personalizados</div>
+                <div class="code-block">
+&lt;<span class="component">Icon</span> 
+  <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"star"</span> /&gt;}
+  <span class="prop">color</span>=<span class="string">"#FFD700"</span>
+  <span class="prop">size</span>={<span class="string">32</span>}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con diferentes librerías de iconos</div>
+                <div class="code-block">
+<span class="keyword">import</span> { 
+  MaterialCommunityIcons, 
+  Ionicons, 
+  FontAwesome 
+} <span class="keyword">from</span> <span class="string">'@expo/vector-icons'</span>;
+
+<span class="comment">// MaterialCommunityIcons</span>
+&lt;<span class="component">Icon</span> 
+  <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"home"</span> /&gt;}
+  <span class="prop">color</span>=<span class="string">"#33729E"</span>
+/&gt;
+
+<span class="comment">// Ionicons</span>
+&lt;<span class="component">Icon</span> 
+  <span class="prop">as</span>={&lt;<span class="component">Ionicons</span> <span class="prop">name</span>=<span class="string">"settings-outline"</span> /&gt;}
+  <span class="prop">color</span>=<span class="string">"#33729E"</span>
+/&gt;
+
+<span class="comment">// FontAwesome</span>
+&lt;<span class="component">Icon</span> 
+  <span class="prop">as</span>={&lt;<span class="component">FontAwesome</span> <span class="prop">name</span>=<span class="string">"user"</span> /&gt;}
+  <span class="prop">color</span>=<span class="string">"#33729E"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con estilos de contenedor</div>
+                <div class="code-block">
+&lt;<span class="component">Icon</span> 
+  <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"bell"</span> /&gt;}
+  <span class="prop">color</span>=<span class="string">"white"</span>
+  <span class="prop">size</span>={<span class="string">24</span>}
+  <span class="prop">style</span>={{
+    backgroundColor: <span class="string">'#33729E'</span>,
+    padding: <span class="string">12</span>,
+    borderRadius: <span class="string">25</span>,
+  }}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con props de ViewStyle directas</div>
+                <div class="code-block">
+&lt;<span class="component">Icon</span> 
+  <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"account"</span> /&gt;}
+  <span class="prop">color</span>=<span class="string">"#33729E"</span>
+  <span class="prop">marginRight</span>={<span class="string">10</span>}
+  <span class="prop">backgroundColor</span>=<span class="string">"#f0f0f0"</span>
+  <span class="prop">padding</span>={<span class="string">8</span>}
+  <span class="prop">borderRadius</span>={<span class="string">8</span>}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">En un botón</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Icon</span>, <span class="component">Button</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">Button</span> 
+  <span class="prop">title</span>=<span class="string">"Agregar"</span>
+  <span class="prop">leftIcon</span>={
+    &lt;<span class="component">Icon</span> 
+      <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"plus"</span> /&gt;}
+      <span class="prop">color</span>=<span class="string">"white"</span>
+      <span class="prop">size</span>={<span class="string">20</span>}
+    /&gt;
+  }
+  <span class="prop">onPress</span>={handleAdd}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Iconos con badge</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">View</span>, <span class="component">Icon</span>, <span class="component">Badge</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">View</span> <span class="prop">style</span>={{ position: <span class="string">'relative'</span> }}&gt;
+  &lt;<span class="component">Icon</span> 
+    <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"bell"</span> /&gt;}
+    <span class="prop">color</span>=<span class="string">"#33729E"</span>
+    <span class="prop">size</span>={<span class="string">28</span>}
+  /&gt;
+  &lt;<span class="component">Badge</span> 
+    <span class="prop">variant</span>=<span class="string">"error"</span>
+    <span class="prop">size</span>=<span class="string">"sm"</span>
+    <span class="prop">rounded</span>
+    <span class="prop">style</span>={{
+      position: <span class="string">'absolute'</span>,
+      top: <span class="string">-5</span>,
+      right: <span class="string">-5</span>,
+    }}
+  &gt;
+    5
+  &lt;/<span class="component">Badge</span>&gt;
+&lt;/<span class="component">View</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Barra de navegación con iconos</div>
+                <div class="code-block">
+<span class="keyword">const</span> NavigationBar = () => {
+  <span class="keyword">const</span> navItems = [
+    { name: <span class="string">'home'</span>, icon: <span class="string">'home'</span>, label: <span class="string">'Inicio'</span> },
+    { name: <span class="string">'search'</span>, icon: <span class="string">'magnify'</span>, label: <span class="string">'Buscar'</span> },
+    { name: <span class="string">'profile'</span>, icon: <span class="string">'account'</span>, label: <span class="string">'Perfil'</span> },
+  ];
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, justifyContent: <span class="string">'space-around'</span> }}&gt;
+      {navItems.map((item) => (
+        &lt;<span class="component">View</span> <span class="prop">key</span>={item.name} <span class="prop">style</span>={{ alignItems: <span class="string">'center'</span> }}&gt;
+          &lt;<span class="component">Icon</span> 
+            <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>={item.icon} /&gt;}
+            <span class="prop">color</span>=<span class="string">"#33729E"</span>
+            <span class="prop">size</span>={<span class="string">24</span>}
+          /&gt;
+          &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"xs"</span>&gt;{item.label}&lt;/<span class="component">Text</span>&gt;
+        &lt;/<span class="component">View</span>&gt;
+      ))}
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Iconos circulares de acción</div>
+                <div class="code-block">
+<span class="keyword">const</span> ActionButton = ({ icon, onPress, color = <span class="string">'#33729E'</span> }) => (
+  &lt;<span class="component">TouchableOpacity</span> <span class="prop">onPress</span>={onPress}&gt;
+    &lt;<span class="component">Icon</span> 
+      <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>={icon} /&gt;}
+      <span class="prop">color</span>=<span class="string">"white"</span>
+      <span class="prop">size</span>={<span class="string">24</span>}
+      <span class="prop">style</span>={{
+        backgroundColor: color,
+        padding: <span class="string">16</span>,
+        borderRadius: <span class="string">30</span>,
+      }}
+    /&gt;
+  &lt;/<span class="component">TouchableOpacity</span>&gt;
+);
+
+<span class="comment">// Uso</span>
+&lt;<span class="component">ActionButton</span> <span class="prop">icon</span>=<span class="string">"camera"</span> <span class="prop">color</span>=<span class="string">"#10B981"</span> <span class="prop">onPress</span>={openCamera} /&gt;</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🧭 <strong>Navegación:</strong> Iconos en barras de navegación y menús</li>
+                <li>🔘 <strong>Botones:</strong> Agregar iconos a botones para mejor UX</li>
+                <li>📝 <strong>Formularios:</strong> Iconos en inputs y campos de texto</li>
+                <li>📋 <strong>Listas:</strong> Iconos descriptivos en items de lista</li>
+                <li>⚙️ <strong>Configuración:</strong> Iconos en pantallas de ajustes</li>
+                <li>🎨 <strong>Decoración:</strong> Elementos visuales decorativos</li>
+                <li>📊 <strong>Dashboard:</strong> Iconos en tarjetas y estadísticas</li>
+                <li>🔔 <strong>Notificaciones:</strong> Iconos de alerta y estado</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🎨 Mantén una paleta de colores consistente para iconos en toda la app</li>
+                <li>📏 Usa tamaños consistentes: 16-20px para iconos pequeños, 24px para normales, 32px+ para destacados</li>
+                <li>♿ Asegúrate de que los iconos tengan suficiente contraste con el fondo</li>
+                <li>🎯 Usa iconos universalmente reconocidos (ej: 🗑️ para eliminar, ⚙️ para configuración)</li>
+                <li>💡 Combina iconos con texto cuando sea posible para mayor claridad</li>
+                <li>📱 Mantén un área táctil mínima de 44x44 puntos para iconos clickeables</li>
+                <li>🔄 Usa una sola librería de iconos en tu proyecto para mantener consistencia visual</li>
+                <li>⚡ Evita usar iconos demasiado complejos que no se vean bien en tamaños pequeños</li>
+            </ul>
+        </div>
+
+        <!-- Librerías de Iconos Compatibles -->
+        <div class="section">
+            <h2>📚 Librerías de Iconos Compatibles</h2>
+            
+            <h3>@expo/vector-icons (Recomendado para Expo)</h3>
+            <div class="code-block">
+<span class="keyword">import</span> {
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Ionicons,
+  FontAwesome,
+  FontAwesome5,
+  Feather,
+  AntDesign,
+  Entypo,
+} <span class="keyword">from</span> <span class="string">'@expo/vector-icons'</span>;</div>
+
+            <h3>react-native-vector-icons</h3>
+            <div class="code-block">
+<span class="keyword">import</span> MaterialCommunityIcons <span class="keyword">from</span> <span class="string">'react-native-vector-icons/MaterialCommunityIcons'</span>;
+<span class="keyword">import</span> Ionicons <span class="keyword">from</span> <span class="string">'react-native-vector-icons/Ionicons'</span>;</div>
+
+            <h3>Recursos</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🔍 <strong>MaterialCommunityIcons:</strong> <a href="https://materialdesignicons.com/" target="_blank">materialdesignicons.com</a> (6000+ iconos)</li>
+                <li>🔍 <strong>Ionicons:</strong> <a href="https://ionic.io/ionicons" target="_blank">ionic.io/ionicons</a></li>
+                <li>🔍 <strong>FontAwesome:</strong> <a href="https://fontawesome.com/icons" target="_blank">fontawesome.com/icons</a></li>
+            </ul>
+
+            <div class="tip">
+                <strong>💡 Tip:</strong> MaterialCommunityIcons es la librería más completa con más de 6000 iconos. 
+                Es una excelente opción como librería principal.
+            </div>
+        </div>
+
+        <!-- Personalización Avanzada -->
+        <div class="section">
+            <h2>🎨 Personalización Avanzada</h2>
+
+            <h3>Iconos con gradiente (usando react-native-linear-gradient)</h3>
+            <div class="code-block">
+<span class="keyword">import</span> LinearGradient <span class="keyword">from</span> <span class="string">'react-native-linear-gradient'</span>;
+<span class="keyword">import</span> MaskedView <span class="keyword">from</span> <span class="string">'@react-native-masked-view/masked-view'</span>;
+
+<span class="keyword">const</span> GradientIcon = ({ icon, size = <span class="string">32</span> }) => (
+  &lt;<span class="component">MaskedView</span>
+    <span class="prop">maskElement</span>={
+      &lt;<span class="component">Icon</span> 
+        <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>={icon} /&gt;}
+        <span class="prop">size</span>={size}
+        <span class="prop">color</span>=<span class="string">"black"</span>
+      /&gt;
+    }
+  &gt;
+    &lt;<span class="component">LinearGradient</span>
+      <span class="prop">colors</span>={[<span class="string">'#33729E'</span>, <span class="string">'#33729E'</span>]}
+      <span class="prop">style</span>={{ width: size, height: size }}
+    /&gt;
+  &lt;/<span class="component">MaskedView</span>&gt;
+);</div>
+
+            <h3>Iconos animados</h3>
+            <div class="code-block">
+<span class="keyword">import</span> { Animated } <span class="keyword">from</span> <span class="string">'react-native'</span>;
+
+<span class="keyword">const</span> AnimatedIcon = () => {
+  <span class="keyword">const</span> rotation = useRef(<span class="keyword">new</span> Animated.Value(<span class="string">0</span>)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(rotation, {
+        toValue: <span class="string">1</span>,
+        duration: <span class="string">2000</span>,
+        useNativeDriver: <span class="keyword">true</span>,
+      })
+    ).start();
+  }, []);
+
+  <span class="keyword">const</span> rotate = rotation.interpolate({
+    inputRange: [<span class="string">0</span>, <span class="string">1</span>],
+    outputRange: [<span class="string">'0deg'</span>, <span class="string">'360deg'</span>],
+  });
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">Animated.View</span> <span class="prop">style</span>={{ transform: [{ rotate }] }}&gt;
+      &lt;<span class="component">Icon</span> 
+        <span class="prop">as</span>={&lt;<span class="component">MaterialCommunityIcons</span> <span class="prop">name</span>=<span class="string">"loading"</span> /&gt;}
+        <span class="prop">color</span>=<span class="string">"#33729E"</span>
+        <span class="prop">size</span>={<span class="string">32</span>}
+      /&gt;
+    &lt;/<span class="component">Animated.View</span>&gt;
+  );
+};</div>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Cómo Funciona</h3>
+            <p>
+                El componente usa <code>cloneElement</code> de React para clonar el icono que le pasas y sobrescribir 
+                sus props de <code>color</code> y <code>size</code>. Esto permite que funcione con cualquier librería 
+                de iconos sin necesidad de crear wrappers específicos.
+            </p>
+
+            <div class="code-block">
+<span class="keyword">const</span> iconElement = cloneElement(as, {
+  color: color || iconProps.color,
+  size: size || iconProps.size || <span class="string">24</span>,
+});</div>
+
+            <h3>Orden de Prioridad</h3>
+            <ol style="line-height: 2; padding-left: 20px;">
+                <li>Props pasadas al componente Icon (color, size)</li>
+                <li>Props originales del icono pasado en "as"</li>
+                <li>Valores por defecto (color: '#5E5E5E', size: 24)</li>
+            </ol>
+
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> El componente espera que el icono pasado en la prop "as" acepte 
+                las props <code>color</code> y <code>size</code>. La mayoría de las librerías de iconos populares 
+                siguen esta convención.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Icon</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

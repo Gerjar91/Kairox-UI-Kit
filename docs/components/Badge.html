@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 15px 0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .visual-example-item label {
+            min-width: 120px;
+            font-weight: 600;
+            color: #53565a;
+        }
+
+        /* Badge Variants */
+        .badge-demo {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 5px;
+        }
+
+        .badge-rounded {
+            border-radius: 999px;
+        }
+
+        .badge-outlined {
+            background-color: transparent !important;
+            border: 1px solid;
+        }
+
+        /* Sizes */
+        .badge-sm {
+            padding: 2px 8px;
+            font-size: 11px;
+        }
+
+        .badge-md {
+            padding: 4px 10px;
+            font-size: 13px;
+        }
+
+        .badge-lg {
+            padding: 6px 12px;
+            font-size: 15px;
+        }
+
+        /* Variants */
+        .badge-primary {
+            background-color: #6366F1;
+            color: white;
+        }
+
+        .badge-primary.badge-outlined {
+            color: #6366F1;
+            border-color: #6366F1;
+        }
+
+        .badge-secondary {
+            background-color: #64748B;
+            color: white;
+        }
+
+        .badge-secondary.badge-outlined {
+            color: #64748B;
+            border-color: #64748B;
+        }
+
+        .badge-success {
+            background-color: #10B981;
+            color: white;
+        }
+
+        .badge-success.badge-outlined {
+            color: #10B981;
+            border-color: #10B981;
+        }
+
+        .badge-warning {
+            background-color: #F59E0B;
+            color: white;
+        }
+
+        .badge-warning.badge-outlined {
+            color: #F59E0B;
+            border-color: #F59E0B;
+        }
+
+        .badge-error {
+            background-color: #EF4444;
+            color: white;
+        }
+
+        .badge-error.badge-outlined {
+            color: #EF4444;
+            border-color: #EF4444;
+        }
+
+        .badge-info {
+            background-color: #3B82F6;
+            color: white;
+        }
+
+        .badge-info.badge-outlined {
+            color: #3B82F6;
+            border-color: #3B82F6;
+        }
+
+        .badge-neutral {
+            background-color: #E5E7EB;
+            color: #374151;
+        }
+
+        .badge-neutral.badge-outlined {
+            color: #6B7280;
+            border-color: #D1D5DB;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Badge Component</h1>
+            <p>Etiquetas de estado con múltiples variantes, tamaños y estilos personalizables</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Badge</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Badge</code> es perfecto para mostrar etiquetas, estados, categorías o 
+                información destacada. Ofrece 7 variantes de color, 3 tamaños y múltiples opciones de 
+                personalización como bordes redondeados y estilo outlined.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Los badges son ideales para mostrar estados (activo/inactivo), 
+                categorías, contadores de notificaciones o cualquier información que necesite destacarse visualmente.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>children</strong></td>
+                            <td><span class="type">React.ReactNode</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Contenido del badge (texto o elementos)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>variant</strong></td>
+                            <td><span class="type">'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' | 'neutral'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'primary'</code></td>
+                            <td>Variante de color del badge</td>
+                        </tr>
+                        <tr>
+                            <td><strong>size</strong></td>
+                            <td><span class="type">'sm' | 'md' | 'lg'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'md'</code></td>
+                            <td>Tamaño del badge</td>
+                        </tr>
+                        <tr>
+                            <td><strong>rounded</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>false</code></td>
+                            <td>Si es true, el badge tiene bordes completamente redondeados</td>
+                        </tr>
+                        <tr>
+                            <td><strong>outlined</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>false</code></td>
+                            <td>Si es true, el badge tiene solo borde sin fondo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>showDot</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>false</code></td>
+                            <td>Muestra un punto indicador</td>
+                        </tr>
+                        <tr>
+                            <td><strong>dotPosition</strong></td>
+                            <td><span class="type">'left' | 'right'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'left'</code></td>
+                            <td>Posición del punto indicador</td>
+                        </tr>
+                        <tr>
+                            <td><strong>onClose</strong></td>
+                            <td><span class="type">() => void</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Función para cerrar/remover el badge</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados para el contenedor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>textStyle</strong></td>
+                            <td><span class="type">TextStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados para el texto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>backgroundColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Color de fondo personalizado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>textColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Color de texto personalizado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>borderColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Color de borde personalizado (cuando outlined=true)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Variantes -->
+        <div class="section">
+            <h2>🎨 Variantes</h2>
+            
+            <h3>Variantes de Color</h3>
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Primary:</label>
+                    <span class="badge-demo badge-primary badge-md">Primary</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Secondary:</label>
+                    <span class="badge-demo badge-secondary badge-md">Secondary</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Success:</label>
+                    <span class="badge-demo badge-success badge-md">Success</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Warning:</label>
+                    <span class="badge-demo badge-warning badge-md">Warning</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Error:</label>
+                    <span class="badge-demo badge-error badge-md">Error</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Info:</label>
+                    <span class="badge-demo badge-info badge-md">Info</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Neutral:</label>
+                    <span class="badge-demo badge-neutral badge-md">Neutral</span>
+                </div>
+            </div>
+
+            <h3>Tamaños</h3>
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Small:</label>
+                    <span class="badge-demo badge-primary badge-sm">Small Badge</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Medium:</label>
+                    <span class="badge-demo badge-primary badge-md">Medium Badge</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Large:</label>
+                    <span class="badge-demo badge-primary badge-lg">Large Badge</span>
+                </div>
+            </div>
+
+            <h3>Estilos</h3>
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Solid:</label>
+                    <span class="badge-demo badge-primary badge-md">Solid</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Outlined:</label>
+                    <span class="badge-demo badge-primary badge-outlined badge-md">Outlined</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Rounded:</label>
+                    <span class="badge-demo badge-primary badge-rounded badge-md">Rounded</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Rounded + Outlined:</label>
+                    <span class="badge-demo badge-success badge-rounded badge-outlined badge-md">Rounded Outlined</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejemplos -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Ejemplo básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Badge</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">Badge</span>&gt;Nuevo&lt;/<span class="component">Badge</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con diferentes variantes</div>
+                <div class="code-block">
+&lt;<span class="component">Badge</span> <span class="prop">variant</span>=<span class="string">"success"</span>&gt;Activo&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">variant</span>=<span class="string">"warning"</span>&gt;Pendiente&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">variant</span>=<span class="string">"error"</span>&gt;Inactivo&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">variant</span>=<span class="string">"info"</span>&gt;En revisión&lt;/<span class="component">Badge</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con diferentes tamaños</div>
+                <div class="code-block">
+&lt;<span class="component">Badge</span> <span class="prop">size</span>=<span class="string">"sm"</span>&gt;Pequeño&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">size</span>=<span class="string">"md"</span>&gt;Mediano&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">size</span>=<span class="string">"lg"</span>&gt;Grande&lt;/<span class="component">Badge</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Badge redondeado</div>
+                <div class="code-block">
+&lt;<span class="component">Badge</span> <span class="prop">rounded</span>&gt;Badge Redondeado&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">variant</span>=<span class="string">"success"</span> <span class="prop">rounded</span>&gt;✓ Completado&lt;/<span class="component">Badge</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Badge outlined</div>
+                <div class="code-block">
+&lt;<span class="component">Badge</span> <span class="prop">outlined</span>&gt;Outlined&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">variant</span>=<span class="string">"error"</span> <span class="prop">outlined</span>&gt;Rechazado&lt;/<span class="component">Badge</span>&gt;
+&lt;<span class="component">Badge</span> <span class="prop">variant</span>=<span class="string">"info"</span> <span class="prop">outlined</span> <span class="prop">rounded</span>&gt;Info&lt;/<span class="component">Badge</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con colores personalizados</div>
+                <div class="code-block">
+&lt;<span class="component">Badge</span> 
+  <span class="prop">backgroundColor</span>=<span class="string">"#FF6B9D"</span>
+  <span class="prop">textColor</span>=<span class="string">"white"</span>
+&gt;
+  Rosa Personalizado
+&lt;/<span class="component">Badge</span>&gt;
+
+&lt;<span class="component">Badge</span> 
+  <span class="prop">outlined</span>
+  <span class="prop">borderColor</span>=<span class="string">"#8B5CF6"</span>
+  <span class="prop">textColor</span>=<span class="string">"#8B5CF6"</span>
+&gt;
+  Morado Outlined
+&lt;/<span class="component">Badge</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Contador de notificaciones</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">View</span>, <span class="component">Badge</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> NotificationIcon = () => (
+  &lt;<span class="component">View</span> <span class="prop">style</span>={{ position: <span class="string">'relative'</span> }}&gt;
+    &lt;<span class="comment">{/* Icono */}</span>&gt;
+    &lt;<span class="component">Badge</span> 
+      <span class="prop">variant</span>=<span class="string">"error"</span>
+      <span class="prop">size</span>=<span class="string">"sm"</span>
+      <span class="prop">rounded</span>
+      <span class="prop">style</span>={{
+        position: <span class="string">'absolute'</span>,
+        top: <span class="string">-5</span>,
+        right: <span class="string">-5</span>,
+      }}
+    &gt;
+      3
+    &lt;/<span class="component">Badge</span>&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Lista de categorías</div>
+                <div class="code-block">
+<span class="keyword">const</span> categories = [
+  { name: <span class="string">'React'</span>, variant: <span class="string">'primary'</span> },
+  { name: <span class="string">'TypeScript'</span>, variant: <span class="string">'info'</span> },
+  { name: <span class="string">'UI/UX'</span>, variant: <span class="string">'success'</span> },
+];
+
+&lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, flexWrap: <span class="string">'wrap'</span>, gap: <span class="string">8</span> }}&gt;
+  {categories.map((cat) => (
+    &lt;<span class="component">Badge</span> 
+      <span class="prop">key</span>={cat.name}
+      <span class="prop">variant</span>={cat.variant}
+      <span class="prop">rounded</span>
+    &gt;
+      {cat.name}
+    &lt;/<span class="component">Badge</span>&gt;
+  ))}
+&lt;/<span class="component">View</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Badges de estado</div>
+                <div class="code-block">
+<span class="keyword">const</span> OrderStatus = ({ status }) => {
+  <span class="keyword">const</span> statusConfig = {
+    pending: { variant: <span class="string">'warning'</span>, text: <span class="string">'Pendiente'</span> },
+    processing: { variant: <span class="string">'info'</span>, text: <span class="string">'Procesando'</span> },
+    completed: { variant: <span class="string">'success'</span>, text: <span class="string">'Completado'</span> },
+    cancelled: { variant: <span class="string">'error'</span>, text: <span class="string">'Cancelado'</span> },
+  };
+
+  <span class="keyword">const</span> config = statusConfig[status];
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">Badge</span> <span class="prop">variant</span>={config.variant} <span class="prop">rounded</span>&gt;
+      {config.text}
+    &lt;/<span class="component">Badge</span>&gt;
+  );
+};</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🔔 <strong>Notificaciones:</strong> Mostrar contadores de mensajes no leídos</li>
+                <li>📊 <strong>Estados:</strong> Indicar el estado de órdenes, tareas o procesos</li>
+                <li>🏷️ <strong>Categorías:</strong> Etiquetar contenido con categorías o tags</li>
+                <li>✅ <strong>Disponibilidad:</strong> Mostrar si algo está activo, disponible o en stock</li>
+                <li>⭐ <strong>Destacados:</strong> Marcar elementos como "Nuevo", "Popular", "Oferta"</li>
+                <li>📈 <strong>Niveles:</strong> Mostrar niveles de prioridad (Alta, Media, Baja)</li>
+                <li>🎖️ <strong>Logros:</strong> Mostrar badges de logros o insignias</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🎨 Usa colores consistentes para estados similares en toda tu app</li>
+                <li>📏 Mantén el texto corto y conciso (1-2 palabras idealmente)</li>
+                <li>🔤 Usa tamaño 'sm' para badges secundarios o contadores</li>
+                <li>🎯 Usa 'outlined' cuando quieras un estilo más sutil</li>
+                <li>🌈 Reserva colores específicos para significados consistentes (error=rojo, success=verde)</li>
+                <li>♿ Asegúrate de que haya suficiente contraste entre texto y fondo</li>
+                <li>📱 Evita usar demasiados badges juntos para no abrumar visualmente</li>
+                <li>💡 Combina 'rounded' con badges pequeños para un look más moderno</li>
+            </ul>
+        </div>
+
+        <!-- Configuración de Colores -->
+        <div class="section">
+            <h2>🎨 Configuración de Colores</h2>
+            <p>Los colores de las variantes están definidos en el componente:</p>
+            
+            <div class="code-block">
+<span class="keyword">const</span> <span class="component">variantColors</span> = {
+  <span class="prop">primary</span>: {
+    <span class="prop">bg</span>: <span class="string">'#6366F1'</span>,
+    <span class="prop">text</span>: <span class="string">'#FFFFFF'</span>,
+    <span class="prop">border</span>: <span class="string">'#6366F1'</span>,
+  },
+  <span class="prop">secondary</span>: {
+    <span class="prop">bg</span>: <span class="string">'#64748B'</span>,
+    <span class="prop">text</span>: <span class="string">'#FFFFFF'</span>,
+    <span class="prop">border</span>: <span class="string">'#64748B'</span>,
+  },
+  <span class="prop">success</span>: {
+    <span class="prop">bg</span>: <span class="string">'#10B981'</span>,
+    <span class="prop">text</span>: <span class="string">'#FFFFFF'</span>,
+    <span class="prop">border</span>: <span class="string">'#10B981'</span>,
+  },
+  <span class="prop">warning</span>: {
+    <span class="prop">bg</span>: <span class="string">'#F59E0B'</span>,
+    <span class="prop">text</span>: <span class="string">'#FFFFFF'</span>,
+    <span class="prop">border</span>: <span class="string">'#F59E0B'</span>,
+  },
+  <span class="prop">error</span>: {
+    <span class="prop">bg</span>: <span class="string">'#EF4444'</span>,
+    <span class="prop">text</span>: <span class="string">'#FFFFFF'</span>,
+    <span class="prop">border</span>: <span class="string">'#EF4444'</span>,
+  },
+  <span class="prop">info</span>: {
+    <span class="prop">bg</span>: <span class="string">'#3B82F6'</span>,
+    <span class="prop">text</span>: <span class="string">'#FFFFFF'</span>,
+    <span class="prop">border</span>: <span class="string">'#3B82F6'</span>,
+  },
+  <span class="prop">neutral</span>: {
+    <span class="prop">bg</span>: <span class="string">'#E5E7EB'</span>,
+    <span class="prop">text</span>: <span class="string">'#374151'</span>,
+    <span class="prop">border</span>: <span class="string">'#D1D5DB'</span>,
+  },
+};</div>
+
+            <h3>Configuración de Tamaños</h3>
+            <div class="code-block">
+<span class="keyword">const</span> <span class="component">sizes</span> = {
+  <span class="prop">sm</span>: {
+    <span class="prop">paddingHorizontal</span>: <span class="string">8</span>,
+    <span class="prop">paddingVertical</span>: <span class="string">2</span>,
+    <span class="prop">fontSize</span>: <span class="string">11</span>,
+  },
+  <span class="prop">md</span>: {
+    <span class="prop">paddingHorizontal</span>: <span class="string">10</span>,
+    <span class="prop">paddingVertical</span>: <span class="string">4</span>,
+    <span class="prop">fontSize</span>: <span class="string">13</span>,
+  },
+  <span class="prop">lg</span>: {
+    <span class="prop">paddingHorizontal</span>: <span class="string">12</span>,
+    <span class="prop">paddingVertical</span>: <span class="string">6</span>,
+    <span class="prop">fontSize</span>: <span class="string">15</span>,
+  },
+};</div>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: View y Text como componentes base</li>
+            </ul>
+
+            <h3>Personalización</h3>
+            <p>
+                Puedes personalizar completamente los colores usando las props <code>backgroundColor</code>, 
+                <code>textColor</code> y <code>borderColor</code>, que tienen prioridad sobre las variantes predefinidas.
+            </p>
+
+            <h3>Orden de Prioridad de Estilos</h3>
+            <ol style="line-height: 2; padding-left: 20px;">
+                <li>Estilos base del badge</li>
+                <li>Estilos de la variante seleccionada</li>
+                <li>Estilos del tamaño seleccionado</li>
+                <li>Props de color personalizadas (backgroundColor, textColor, borderColor)</li>
+                <li>Style prop (mayor prioridad)</li>
+            </ol>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Badge</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

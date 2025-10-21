@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divider Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 20px 0;
+            padding: 15px;
+        }
+
+        .visual-example-item label {
+            display: block;
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+        }
+
+        .divider-demo {
+            background-color: #E0E0E0;
+        }
+
+        .divider-horizontal {
+            width: 100%;
+            height: 1px;
+        }
+
+        .divider-vertical {
+            width: 1px;
+            height: 100px;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Divider Component</h1>
+            <p>Separadores visuales horizontales y verticales personalizables</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Divider</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Divider</code> es un separador visual simple pero versátil que ayuda a 
+                organizar y delimitar contenido. Soporta orientación horizontal y vertical, con grosor, 
+                color y longitud completamente personalizables.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Los dividers son excelentes para mejorar la jerarquía visual y la 
+                legibilidad al separar secciones de contenido sin agregar peso visual excesivo.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>orientation</strong></td>
+                            <td><span class="type">'horizontal' | 'vertical'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'horizontal'</code></td>
+                            <td>Orientación del divider</td>
+                        </tr>
+                        <tr>
+                            <td><strong>thickness</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>1</code></td>
+                            <td>Grosor del divider en píxeles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>color</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#E0E0E0'</code></td>
+                            <td>Color del divider</td>
+                        </tr>
+                        <tr>
+                            <td><strong>length</strong></td>
+                            <td><span class="type">DimensionValue</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'100%'</code></td>
+                            <td>Longitud del divider (ancho para horizontal, alto para vertical)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados adicionales</td>
+                        </tr>
+                        <tr>
+                            <td><strong>...ViewStyle</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Props de estilo como margin, padding, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ejemplos Visuales -->
+        <div class="section">
+            <h2>🎨 Ejemplos Visuales</h2>
+            
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Horizontal (por defecto):</label>
+                    <div class="divider-demo divider-horizontal"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Horizontal grueso:</label>
+                    <div class="divider-demo divider-horizontal" style="height: 3px;"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Horizontal con color:</label>
+                    <div class="divider-demo divider-horizontal" style="background-color: #33729E;"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Horizontal corto (80%):</label>
+                    <div class="divider-demo divider-horizontal" style="width: 80%;"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Vertical:</label>
+                    <div class="divider-demo divider-vertical"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Separador de sección:</label>
+                    <div style="text-align: center; position: relative; margin: 30px 0;">
+                        <div class="divider-demo divider-horizontal"></div>
+                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 0 15px; color: #6B7280;">
+                            O
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejemplos de Código -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Divider horizontal básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Divider</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">Divider</span> /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Divider vertical</div>
+                <div class="code-block">
+&lt;<span class="component">Divider</span> 
+  <span class="prop">orientation</span>=<span class="string">"vertical"</span>
+  <span class="prop">length</span>={<span class="string">100</span>}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con grosor personalizado</div>
+                <div class="code-block">
+<span class="comment">// Divider grueso</span>
+&lt;<span class="component">Divider</span> <span class="prop">thickness</span>={<span class="string">3</span>} /&gt;
+
+<span class="comment">// Divider muy delgado</span>
+&lt;<span class="component">Divider</span> <span class="prop">thickness</span>={<span class="string">0.5</span>} /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con color personalizado</div>
+                <div class="code-block">
+<span class="comment">// Divider azul</span>
+&lt;<span class="component">Divider</span> <span class="prop">color</span>=<span class="string">"#33729E"</span> /&gt;
+
+<span class="comment">// Divider rojo</span>
+&lt;<span class="component">Divider</span> <span class="prop">color</span>=<span class="string">"#EF4444"</span> /&gt;
+
+<span class="comment">// Divider sutil</span>
+&lt;<span class="component">Divider</span> <span class="prop">color</span>=<span class="string">"#F3F4F6"</span> /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con longitud personalizada</div>
+                <div class="code-block">
+<span class="comment">// 50% del contenedor</span>
+&lt;<span class="component">Divider</span> <span class="prop">length</span>=<span class="string">"50%"</span> /&gt;
+
+<span class="comment">// 200 píxeles</span>
+&lt;<span class="component">Divider</span> <span class="prop">length</span>={<span class="string">200</span>} /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con márgenes</div>
+                <div class="code-block">
+<span class="comment">// Usando props de ViewStyle</span>
+&lt;<span class="component">Divider</span> 
+  <span class="prop">marginVertical</span>={<span class="string">20</span>}
+/&gt;
+
+<span class="comment">// Con style prop</span>
+&lt;<span class="component">Divider</span> 
+  <span class="prop">style</span>={{ marginTop: <span class="string">16</span>, marginBottom: <span class="string">16</span> }}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">En una lista</div>
+                <div class="code-block">
+<span class="keyword">const</span> MenuList = () => (
+  &lt;<span class="component">View</span>&gt;
+    &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Perfil"</span> /&gt;
+    &lt;<span class="component">Divider</span> /&gt;
+    
+    &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Configuración"</span> /&gt;
+    &lt;<span class="component">Divider</span> /&gt;
+    
+    &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Ayuda"</span> /&gt;
+    &lt;<span class="component">Divider</span> /&gt;
+    
+    &lt;<span class="component">MenuItem</span> <span class="prop">title</span>=<span class="string">"Cerrar sesión"</span> /&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Separador de secciones</div>
+                <div class="code-block">
+&lt;<span class="component">View</span>&gt;
+  &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"2xl"</span>&gt;Información Personal&lt;/<span class="component">Text</span>&gt;
+  &lt;<span class="component">Divider</span> <span class="prop">marginVertical</span>={<span class="string">16</span>} <span class="prop">thickness</span>={<span class="string">2</span>} /&gt;
+  &lt;<span class="comment">{/* Contenido de la sección */}</span>&gt;
+&lt;/<span class="component">View</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Divider vertical en toolbar</div>
+                <div class="code-block">
+&lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, alignItems: <span class="string">'center'</span>, gap: <span class="string">16</span> }}&gt;
+  &lt;<span class="component">IconButton</span> <span class="prop">icon</span>=<span class="string">"home"</span> /&gt;
+  
+  &lt;<span class="component">Divider</span> 
+    <span class="prop">orientation</span>=<span class="string">"vertical"</span>
+    <span class="prop">length</span>={<span class="string">24</span>}
+    <span class="prop">color</span>=<span class="string">"#D1D5DB"</span>
+  /&gt;
+  
+  &lt;<span class="component">IconButton</span> <span class="prop">icon</span>=<span class="string">"search"</span> /&gt;
+  
+  &lt;<span class="component">Divider</span> 
+    <span class="prop">orientation</span>=<span class="string">"vertical"</span>
+    <span class="prop">length</span>={<span class="string">24</span>}
+    <span class="prop">color</span>=<span class="string">"#D1D5DB"</span>
+  /&gt;
+  
+  &lt;<span class="component">IconButton</span> <span class="prop">icon</span>=<span class="string">"settings"</span> /&gt;
+&lt;/<span class="component">View</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Separador con texto</div>
+                <div class="code-block">
+<span class="keyword">const</span> OrDivider = () => (
+  &lt;<span class="component">View</span> <span class="prop">style</span>={{ 
+    flexDirection: <span class="string">'row'</span>, 
+    alignItems: <span class="string">'center'</span>,
+    marginVertical: <span class="string">20</span> 
+  }}&gt;
+    &lt;<span class="component">Divider</span> <span class="prop">style</span>={{ flex: <span class="string">1</span> }} /&gt;
+    &lt;<span class="component">Text</span> <span class="prop">style</span>={{ marginHorizontal: <span class="string">16</span>, color: <span class="string">'#6B7280'</span> }}&gt;O&lt;/<span class="component">Text</span>&gt;
+    &lt;<span class="component">Divider</span> <span class="prop">style</span>={{ flex: <span class="string">1</span> }} /&gt;
+  &lt;/<span class="component">View</span>&gt;
+);
+
+<span class="comment">// Uso en formulario de login</span>
+&lt;<span class="component">View</span>&gt;
+  &lt;<span class="component">Button</span> <span class="prop">title</span>=<span class="string">"Iniciar sesión con Email"</span> /&gt;
+  &lt;<span class="component">OrDivider</span> /&gt;
+  &lt;<span class="component">Button</span> <span class="prop">title</span>=<span class="string">"Continuar con Google"</span> /&gt;
+&lt;/<span class="component">View</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">En tarjeta de producto</div>
+                <div class="code-block">
+<span class="keyword">const</span> ProductCard = () => (
+  &lt;<span class="component">View</span> <span class="prop">style</span>={{ backgroundColor: <span class="string">'white'</span>, padding: <span class="string">16</span>, borderRadius: <span class="string">8</span> }}&gt;
+    &lt;<span class="component">Image</span> <span class="prop">source</span>={productImage} /&gt;
+    
+    &lt;<span class="component">Divider</span> <span class="prop">marginVertical</span>={<span class="string">12</span>} /&gt;
+    
+    &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"lg"</span>&gt;Nombre del Producto&lt;/<span class="component">Text</span>&gt;
+    &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"sm"</span> <span class="prop">color</span>=<span class="string">"#6B7280"</span>&gt;Descripción corta&lt;/<span class="component">Text</span>&gt;
+    
+    &lt;<span class="component">Divider</span> <span class="prop">marginVertical</span>={<span class="string">12</span>} /&gt;
+    
+    &lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, justifyContent: <span class="string">'space-between'</span> }}&gt;
+      &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"xl"</span>&gt;$99.99&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">Button</span> <span class="prop">title</span>=<span class="string">"Agregar"</span> /&gt;
+    &lt;/<span class="component">View</span>&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Grid con dividers verticales</div>
+                <div class="code-block">
+<span class="keyword">const</span> StatsGrid = () => (
+  &lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, justifyContent: <span class="string">'space-around'</span> }}&gt;
+    &lt;<span class="component">StatItem</span> <span class="prop">label</span>=<span class="string">"Seguidores"</span> <span class="prop">value</span>=<span class="string">"1.2K"</span> /&gt;
+    
+    &lt;<span class="component">Divider</span> 
+      <span class="prop">orientation</span>=<span class="string">"vertical"</span>
+      <span class="prop">length</span>={<span class="string">50</span>}
+      <span class="prop">color</span>=<span class="string">"#E5E7EB"</span>
+    /&gt;
+    
+    &lt;<span class="component">StatItem</span> <span class="prop">label</span>=<span class="string">"Siguiendo"</span> <span class="prop">value</span>=<span class="string">"340"</span> /&gt;
+    
+    &lt;<span class="component">Divider</span> 
+      <span class="prop">orientation</span>=<span class="string">"vertical"</span>
+      <span class="prop">length</span>={<span class="string">50</span>}
+      <span class="prop">color</span>=<span class="string">"#E5E7EB"</span>
+    /&gt;
+    
+    &lt;<span class="component">StatItem</span> <span class="prop">label</span>=<span class="string">"Posts"</span> <span class="prop">value</span>=<span class="string">"89"</span> /&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>📋 <strong>Listas:</strong> Separar items en listas y menús</li>
+                <li>📄 <strong>Secciones:</strong> Delimitar diferentes secciones de contenido</li>
+                <li>🎨 <strong>Tarjetas:</strong> Separar elementos dentro de tarjetas</li>
+                <li>🔧 <strong>Toolbars:</strong> Separar grupos de botones o iconos</li>
+                <li>📊 <strong>Dashboards:</strong> Delimitar widgets y estadísticas</li>
+                <li>📝 <strong>Formularios:</strong> Separar grupos de campos</li>
+                <li>🏷️ <strong>Headers:</strong> Línea decorativa bajo títulos</li>
+                <li>⚙️ <strong>Configuración:</strong> Separar grupos de opciones</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🎨 Usa colores sutiles que no compitan con el contenido (#E0E0E0 o #F3F4F6)</li>
+                <li>📏 Mantén el grosor delgado (1-2px) para la mayoría de casos</li>
+                <li>📍 Agrega márgenes apropiados para dar espacio al contenido</li>
+                <li>🔄 Usa dividers consistentemente en toda la aplicación</li>
+                <li>⚡ No abuses de los dividers - úsalos solo cuando mejoren la legibilidad</li>
+                <li>♿ Asegura suficiente contraste con el fondo</li>
+                <li>📱 En listas largas, considera usar dividers más sutiles</li>
+                <li>🎯 Usa dividers verticales con moderación</li>
+            </ul>
+        </div>
+
+        <!-- Variaciones -->
+        <div class="section">
+            <h2>🎨 Variaciones Comunes</h2>
+
+            <h3>Divider Sutil</h3>
+            <div class="code-block">
+&lt;<span class="component">Divider</span> 
+  <span class="prop">color</span>=<span class="string">"#F3F4F6"</span>
+  <span class="prop">thickness</span>={<span class="string">0.5</span>}
+/&gt;</div>
+
+            <h3>Divider Grueso Destacado</h3>
+            <div class="code-block">
+&lt;<span class="component">Divider</span> 
+  <span class="prop">color</span>=<span class="string">"#33729E"</span>
+  <span class="prop">thickness</span>={<span class="string">3</span>}
+  <span class="prop">length</span>=<span class="string">"50%"</span>
+  <span class="prop">marginVertical</span>={<span class="string">20</span>}
+/&gt;</div>
+
+            <h3>Divider con Gradiente (Personalizado)</h3>
+            <div class="code-block">
+<span class="keyword">import</span> LinearGradient <span class="keyword">from</span> <span class="string">'react-native-linear-gradient'</span>;
+
+<span class="keyword">const</span> GradientDivider = () => (
+  &lt;<span class="component">LinearGradient</span>
+    <span class="prop">colors</span>={[<span class="string">'transparent'</span>, <span class="string">'#33729E'</span>, <span class="string">'transparent'</span>]}
+    <span class="prop">start</span>={{ x: <span class="string">0</span>, y: <span class="string">0</span> }}
+    <span class="prop">end</span>={{ x: <span class="string">1</span>, y: <span class="string">0</span> }}
+    <span class="prop">style</span>={{ height: <span class="string">1</span>, width: <span class="string">'100%'</span>, marginVertical: <span class="string">16</span> }}
+  /&gt;
+);</div>
+
+            <h3>Divider Punteado (Personalizado)</h3>
+            <div class="code-block">
+<span class="keyword">const</span> DashedDivider = () => (
+  &lt;<span class="component">View</span>
+    <span class="prop">style</span>={{
+      borderBottomWidth: <span class="string">1</span>,
+      borderBottomColor: <span class="string">'#E0E0E0'</span>,
+      borderStyle: <span class="string">'dashed'</span>,
+      marginVertical: <span class="string">16</span>,
+    }}
+  /&gt;
+);</div>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: View</li>
+            </ul>
+
+            <h3>Implementación</h3>
+            <p>El componente calcula dinámicamente sus dimensiones según la orientación:</p>
+            <div class="code-block">
+<span class="keyword">const</span> dividerStyle =
+  orientation === <span class="string">'horizontal'</span>
+    ? { width: length, height: thickness, backgroundColor: color }
+    : { width: thickness, height: length, backgroundColor: color };</div>
+
+            <h3>Flexibilidad</h3>
+            <p>
+                El componente acepta tanto props específicas como cualquier prop de ViewStyle, 
+                permitiendo máxima flexibilidad en el posicionamiento y estilo.
+            </p>
+        </div>
+
+        <!-- Accesibilidad -->
+        <div class="section">
+            <h2>♿ Accesibilidad</h2>
+            <p>Los dividers son elementos puramente visuales y no requieren consideraciones especiales de accesibilidad. Sin embargo:</p>
+            
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>Asegura que haya suficiente contraste con el fondo (mínimo 3:1)</li>
+                <li>No dependas únicamente de dividers para separar contenido - usa también espaciado</li>
+                <li>Los screen readers ignorarán los dividers, así que la estructura del contenido debe ser clara sin ellos</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Divider</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

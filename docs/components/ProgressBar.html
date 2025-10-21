@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProgressBar Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 20px 0;
+        }
+
+        .visual-example-item label {
+            display: block;
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+        }
+
+        /* Progress Bar Demo */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #E5E7EB;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #3B82F6;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ProgressBar Component</h1>
+            <p>Barras de progreso animadas con valores de 0 a 100 y personalización completa</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+            <span class="badge">Animated</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">ProgressBar</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>ProgressBar</code> muestra el progreso de una tarea u operación mediante 
+                una barra visual animada. Acepta valores de 0 a 100 y puede ser completamente personalizado 
+                en términos de color, altura, animación y más.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Las barras de progreso son ideales para mostrar el avance de descargas, 
+                uploads, instalaciones, completitud de perfiles, y cualquier tarea con progreso cuantificable.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>progress</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td><code>0</code></td>
+                            <td>Valor del progreso (0-100)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>height</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>8</code></td>
+                            <td>Altura de la barra en píxeles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>backgroundColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#E5E7EB'</code></td>
+                            <td>Color de fondo de la barra</td>
+                        </tr>
+                        <tr>
+                            <td><strong>progressColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#3B82F6'</code></td>
+                            <td>Color de la barra de progreso</td>
+                        </tr>
+                        <tr>
+                            <td><strong>borderRadius</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>4</code></td>
+                            <td>Radio de los bordes redondeados</td>
+                        </tr>
+                        <tr>
+                            <td><strong>animated</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>true</code></td>
+                            <td>Si la barra debe animarse</td>
+                        </tr>
+                        <tr>
+                            <td><strong>animationDuration</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>300</code></td>
+                            <td>Duración de la animación en ms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>marginBottom</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>0</code></td>
+                            <td>Margen inferior</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ejemplos Visuales -->
+        <div class="section">
+            <h2>🎨 Ejemplos Visuales</h2>
+            
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>25% Completado:</label>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>50% Completado:</label>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>75% Completado:</label>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>100% Completado:</label>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 100%; background-color: #10B981;"></div>
+                    </div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Barra gruesa (20px):</label>
+                    <div class="progress-container" style="height: 20px;">
+                        <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Barra delgada (4px):</label>
+                    <div class="progress-container" style="height: 4px;">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Color personalizado (morado):</label>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 65%; background-color: #33729E;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejemplos de Código -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Ejemplo básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { useState } <span class="keyword">from</span> <span class="string">'react'</span>;
+<span class="keyword">import</span> { <span class="component">ProgressBar</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> MyComponent = () => {
+  <span class="keyword">const</span> [progress, setProgress] = useState(<span class="string">50</span>);
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">ProgressBar</span> <span class="prop">progress</span>={progress} /&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con colores personalizados</div>
+                <div class="code-block">
+<span class="comment">// Barra verde para éxito</span>
+&lt;<span class="component">ProgressBar</span> 
+  <span class="prop">progress</span>={<span class="string">100</span>}
+  <span class="prop">progressColor</span>=<span class="string">"#10B981"</span>
+/&gt;
+
+<span class="comment">// Barra roja para error</span>
+&lt;<span class="component">ProgressBar</span> 
+  <span class="prop">progress</span>={<span class="string">30</span>}
+  <span class="prop">progressColor</span>=<span class="string">"#EF4444"</span>
+  <span class="prop">backgroundColor</span>=<span class="string">"#FEE2E2"</span>
+/&gt;
+
+<span class="comment">// Barra morada</span>
+&lt;<span class="component">ProgressBar</span> 
+  <span class="prop">progress</span>={<span class="string">65</span>}
+  <span class="prop">progressColor</span>=<span class="string">"#33729E"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con diferentes alturas</div>
+                <div class="code-block">
+<span class="comment">// Barra delgada</span>
+&lt;<span class="component">ProgressBar</span> <span class="prop">progress</span>={<span class="string">70</span>} <span class="prop">height</span>={<span class="string">4</span>} /&gt;
+
+<span class="comment">// Barra normal</span>
+&lt;<span class="component">ProgressBar</span> <span class="prop">progress</span>={<span class="string">70</span>} <span class="prop">height</span>={<span class="string">8</span>} /&gt;
+
+<span class="comment">// Barra gruesa</span>
+&lt;<span class="component">ProgressBar</span> <span class="prop">progress</span>={<span class="string">70</span>} <span class="prop">height</span>={<span class="string">20</span>} /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Sin animación</div>
+                <div class="code-block">
+&lt;<span class="component">ProgressBar</span> 
+  <span class="prop">progress</span>={<span class="string">85</span>}
+  <span class="prop">animated</span>={<span class="keyword">false</span>}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con animación personalizada</div>
+                <div class="code-block">
+<span class="comment">// Animación lenta</span>
+&lt;<span class="component">ProgressBar</span> 
+  <span class="prop">progress</span>={<span class="string">75</span>}
+  <span class="prop">animationDuration</span>={<span class="string">1000</span>}
+/&gt;
+
+<span class="comment">// Animación rápida</span>
+&lt;<span class="component">ProgressBar</span> 
+  <span class="prop">progress</span>={<span class="string">75</span>}
+  <span class="prop">animationDuration</span>={<span class="string">150</span>}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Indicador de descarga</div>
+                <div class="code-block">
+<span class="keyword">const</span> DownloadProgress = () => {
+  <span class="keyword">const</span> [downloadProgress, setDownloadProgress] = useState(<span class="string">0</span>);
+
+  <span class="keyword">const</span> simulateDownload = () => {
+    <span class="keyword">const</span> interval = setInterval(() => {
+      setDownloadProgress(prev => {
+        <span class="keyword">if</span> (prev >= <span class="string">100</span>) {
+          clearInterval(interval);
+          <span class="keyword">return</span> <span class="string">100</span>;
+        }
+        <span class="keyword">return</span> prev + <span class="string">10</span>;
+      });
+    }, <span class="string">500</span>);
+  };
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span>&gt;
+      &lt;<span class="component">Text</span>&gt;Descargando archivo... {downloadProgress}%&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">ProgressBar</span> 
+        <span class="prop">progress</span>={downloadProgress}
+        <span class="prop">progressColor</span>=<span class="string">"#3B82F6"</span>
+        <span class="prop">marginBottom</span>={<span class="string">16</span>}
+      /&gt;
+      &lt;<span class="component">Button</span> <span class="prop">title</span>=<span class="string">"Iniciar descarga"</span> <span class="prop">onPress</span>={simulateDownload} /&gt;
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Progreso de perfil</div>
+                <div class="code-block">
+<span class="keyword">const</span> ProfileCompletion = ({ user }) => {
+  <span class="keyword">const</span> calculateCompletion = () => {
+    <span class="keyword">let</span> completed = <span class="string">0</span>;
+    <span class="keyword">const</span> fields = [user.name, user.email, user.photo, user.bio, user.location];
+    fields.forEach(field => field && completed++);
+    <span class="keyword">return</span> (completed / fields.length) * <span class="string">100</span>;
+  };
+
+  <span class="keyword">const</span> completion = calculateCompletion();
+  <span class="keyword">const</span> color = completion === <span class="string">100</span> ? <span class="string">'#10B981'</span> : <span class="string">'#F59E0B'</span>;
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span>&gt;
+      &lt;<span class="component">Text</span>&gt;Perfil {Math.round(completion)}% completo&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">ProgressBar</span> 
+        <span class="prop">progress</span>={completion}
+        <span class="prop">progressColor</span>={color}
+        <span class="prop">height</span>={<span class="string">12</span>}
+      /&gt;
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Múltiples barras de progreso</div>
+                <div class="code-block">
+<span class="keyword">const</span> SkillsChart = () => (
+  &lt;<span class="component">View</span>&gt;
+    &lt;<span class="component">View</span> <span class="prop">style</span>={{ marginBottom: <span class="string">16</span> }}&gt;
+      &lt;<span class="component">Text</span>&gt;React Native - 90%&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">ProgressBar</span> <span class="prop">progress</span>={<span class="string">90</span>} <span class="prop">progressColor</span>=<span class="string">"#61DAFB"</span> /&gt;
+    &lt;/<span class="component">View</span>&gt;
+
+    &lt;<span class="component">View</span> <span class="prop">style</span>={{ marginBottom: <span class="string">16</span> }}&gt;
+      &lt;<span class="component">Text</span>&gt;TypeScript - 75%&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">ProgressBar</span> <span class="prop">progress</span>={<span class="string">75</span>} <span class="prop">progressColor</span>=<span class="string">"#3178C6"</span> /&gt;
+    &lt;/<span class="component">View</span>&gt;
+
+    &lt;<span class="component">View</span> <span class="prop">style</span>={{ marginBottom: <span class="string">16</span> }}&gt;
+      &lt;<span class="component">Text</span>&gt;JavaScript - 85%&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">ProgressBar</span> <span class="prop">progress</span>={<span class="string">85</span>} <span class="prop">progressColor</span>=<span class="string">"#F7DF1E"</span> /&gt;
+    &lt;/<span class="component">View</span>&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Paso a paso con progreso</div>
+                <div class="code-block">
+<span class="keyword">const</span> OnboardingFlow = () => {
+  <span class="keyword">const</span> [currentStep, setCurrentStep] = useState(<span class="string">1</span>);
+  <span class="keyword">const</span> totalSteps = <span class="string">4</span>;
+  <span class="keyword">const</span> progress = (currentStep / totalSteps) * <span class="string">100</span>;
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span>&gt;
+      &lt;<span class="component">Text</span>&gt;Paso {currentStep} de {totalSteps}&lt;/<span class="component">Text</span>&gt;
+      &lt;<span class="component">ProgressBar</span> 
+        <span class="prop">progress</span>={progress}
+        <span class="prop">height</span>={<span class="string">6</span>}
+        <span class="prop">marginBottom</span>={<span class="string">24</span>}
+      /&gt;
+      
+      <span class="comment">{/* Contenido del paso actual */}</span>
+      
+      &lt;<span class="component">Button</span> 
+        <span class="prop">title</span>=<span class="string">"Siguiente"</span>
+        <span class="prop">onPress</span>={() => setCurrentStep(prev => Math.min(prev + <span class="string">1</span>, totalSteps))}
+      /&gt;
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>📥 <strong>Descargas:</strong> Mostrar progreso de descargas de archivos</li>
+                <li>📤 <strong>Uploads:</strong> Indicar avance de subida de archivos</li>
+                <li>👤 <strong>Perfiles:</strong> Completitud de información de perfil</li>
+                <li>📝 <strong>Formularios:</strong> Progreso en formularios multi-paso</li>
+                <li>🎯 <strong>Objetivos:</strong> Avance hacia metas u objetivos</li>
+                <li>💪 <strong>Skills:</strong> Nivel de habilidades o competencias</li>
+                <li>📊 <strong>Estadísticas:</strong> Visualización de datos porcentuales</li>
+                <li>⏳ <strong>Instalaciones:</strong> Progreso de instalación de apps</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>📊 Acompaña la barra con texto que indique el porcentaje o contexto</li>
+                <li>🎨 Usa colores apropiados (verde para completado, azul para en progreso)</li>
+                <li>⏱️ Mantén la animación suave (300-500ms es ideal)</li>
+                <li>📏 Usa altura de 6-12px para la mayoría de casos</li>
+                <li>✅ Cambia a verde cuando el progreso llega al 100%</li>
+                <li>🔄 Actualiza el progreso de forma frecuente pero no excesiva</li>
+                <li>💬 Proporciona feedback adicional cuando el proceso complete</li>
+                <li>📱 Asegura que la barra sea visible en todas las pantallas</li>
+            </ul>
+        </div>
+
+        <!-- Animación -->
+        <div class="section">
+            <h2>✨ Animación</h2>
+            <p>
+                El componente usa <code>Animated.timing</code> para animar el ancho de la barra de progreso, 
+                creando una transición suave cuando el valor cambia.
+            </p>
+
+            <div class="code-block">
+Animated.timing(animatedWidth, {
+  <span class="prop">toValue</span>: clampedProgress,
+  <span class="prop">duration</span>: animationDuration,
+  <span class="prop">useNativeDriver</span>: <span class="keyword">false</span>, <span class="comment">// No se puede usar para width</span>
+}).start();
+
+<span class="comment">// Interpolación del ancho</span>
+<span class="keyword">const</span> widthInterpolation = animatedWidth.interpolate({
+  <span class="prop">inputRange</span>: [<span class="string">0</span>, <span class="string">100</span>],
+  <span class="prop">outputRange</span>: [<span class="string">'0%'</span>, <span class="string">'100%'</span>],
+});</div>
+
+            <h3>Características</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🎯 <strong>Clamping automático:</strong> Los valores se limitan entre 0-100</li>
+                <li>🔄 <strong>Interpolación:</strong> Conversión fluida de número a porcentaje</li>
+                <li>⚡ <strong>Desactivable:</strong> Puedes deshabilitar la animación con <code>animated={false}</code></li>
+                <li>⏱️ <strong>Duración personalizable:</strong> Ajusta la velocidad de la animación</li>
+            </ul>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: View, Animated</li>
+            </ul>
+
+            <h3>Validación de Valores</h3>
+            <p>El componente automáticamente limita el progreso entre 0 y 100:</p>
+            <div class="code-block">
+<span class="keyword">const</span> clampedProgress = Math.min(Math.max(progress, <span class="string">0</span>), <span class="string">100</span>);</div>
+
+            <h3>Native Driver</h3>
+            <p>
+                La animación no puede usar <code>useNativeDriver: true</code> porque las propiedades de 
+                layout (width, height) no son soportadas en el hilo nativo. El componente usa 
+                <code>useNativeDriver: false</code> para animar el ancho correctamente.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente ProgressBar</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

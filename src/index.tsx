@@ -465,9 +465,7 @@ const HomeContainer = () => {
                         <Text variant='sm' color='#6B7280'>
                             Kairox UI Kit v1.0.0
                         </Text>
-                        <Text variant='xs' color='#9CA3AF' marginTop={4}>
-                            Hecho con ❤️ para React Native
-                        </Text>
+
                     </View>
                 </View>
             </BoxContent>

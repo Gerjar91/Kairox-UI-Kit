@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeleton Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 20px 0;
+            padding: 15px;
+        }
+
+        .visual-example-item label {
+            display: block;
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+        }
+
+        /* Skeleton animations */
+        @keyframes shimmer {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .skeleton {
+            background-color: #E1E9EE;
+            position: relative;
+            overflow: hidden;
+            animation: shimmer 2s infinite;
+        }
+
+        .skeleton-text {
+            height: 20px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .skeleton-circle {
+            border-radius: 50%;
+        }
+
+        .skeleton-rect {
+            border-radius: 8px;
+        }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Skeleton Component</h1>
+            <p>Placeholders animados para estados de carga con shimmer effect</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+            <span class="badge">Animated</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Skeleton</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Skeleton</code> proporciona placeholders animados que se muestran mientras se 
+                carga el contenido real. Usa un efecto shimmer suave para indicar que el contenido está cargando, 
+                mejorando significativamente la percepción de velocidad de tu aplicación.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> Los skeletons mejoran la UX al mostrar la estructura del contenido antes 
+                de que esté listo, reduciendo la percepción de tiempo de carga y evitando "layout shifts" bruscos.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>width</strong></td>
+                            <td><span class="type">DimensionValue</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'100%'</code></td>
+                            <td>Ancho del skeleton (número o porcentaje)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>height</strong></td>
+                            <td><span class="type">DimensionValue</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>20</code></td>
+                            <td>Alto del skeleton en píxeles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>borderRadius</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>4</code></td>
+                            <td>Radio de los bordes redondeados</td>
+                        </tr>
+                        <tr>
+                            <td><strong>duration</strong></td>
+                            <td><span class="type">number</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>1000</code></td>
+                            <td>Duración de la animación en milisegundos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>baseColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#E1E9EE'</code></td>
+                            <td>Color base del skeleton</td>
+                        </tr>
+                        <tr>
+                            <td><strong>highlightColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#F2F8FC'</code></td>
+                            <td>Color del efecto shimmer (highlight)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados adicionales</td>
+                        </tr>
+                        <tr>
+                            <td><strong>...ViewStyle</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Props de estilo como margin, padding, etc.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ejemplos Visuales -->
+        <div class="section">
+            <h2>🎨 Ejemplos Visuales</h2>
+            
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Línea de texto (por defecto):</label>
+                    <div class="skeleton skeleton-text" style="width: 100%; height: 20px;"></div>
+                </div>
+                
+                <div class="visual-example-item">
+                    <label>Título:</label>
+                    <div class="skeleton skeleton-text" style="width: 60%; height: 24px;"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Párrafo (múltiples líneas):</label>
+                    <div class="skeleton skeleton-text" style="width: 100%; height: 16px;"></div>
+                    <div class="skeleton skeleton-text" style="width: 95%; height: 16px;"></div>
+                    <div class="skeleton skeleton-text" style="width: 80%; height: 16px;"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Avatar circular:</label>
+                    <div class="skeleton skeleton-circle" style="width: 60px; height: 60px;"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Imagen rectangular:</label>
+                    <div class="skeleton skeleton-rect" style="width: 100%; height: 200px;"></div>
+                </div>
+
+                <div class="visual-example-item">
+                    <label>Tarjeta completa:</label>
+                    <div style="display: flex; gap: 15px; align-items: flex-start;">
+                        <div class="skeleton skeleton-circle" style="width: 50px; height: 50px;"></div>
+                        <div style="flex: 1;">
+                            <div class="skeleton skeleton-text" style="width: 70%; height: 18px; margin-bottom: 8px;"></div>
+                            <div class="skeleton skeleton-text" style="width: 100%; height: 14px; margin-bottom: 6px;"></div>
+                            <div class="skeleton skeleton-text" style="width: 90%; height: 14px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejemplos de Código -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Línea de texto simple</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Skeleton</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">Skeleton</span> /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con dimensiones personalizadas</div>
+                <div class="code-block">
+<span class="comment">// Título</span>
+&lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"60%"</span> <span class="prop">height</span>={<span class="string">24</span>} /&gt;
+
+<span class="comment">// Párrafo</span>
+&lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"100%"</span> <span class="prop">height</span>={<span class="string">16</span>} /&gt;
+&lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"95%"</span> <span class="prop">height</span>={<span class="string">16</span>} /&gt;
+&lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"80%"</span> <span class="prop">height</span>={<span class="string">16</span>} /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Avatar circular</div>
+                <div class="code-block">
+&lt;<span class="component">Skeleton</span> 
+  <span class="prop">width</span>={<span class="string">60</span>}
+  <span class="prop">height</span>={<span class="string">60</span>}
+  <span class="prop">borderRadius</span>={<span class="string">30</span>}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Imagen rectangular</div>
+                <div class="code-block">
+&lt;<span class="component">Skeleton</span> 
+  <span class="prop">width</span>=<span class="string">"100%"</span>
+  <span class="prop">height</span>={<span class="string">200</span>}
+  <span class="prop">borderRadius</span>={<span class="string">8</span>}
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con colores personalizados</div>
+                <div class="code-block">
+&lt;<span class="component">Skeleton</span> 
+  <span class="prop">baseColor</span>=<span class="string">"#D1D5DB"</span>
+  <span class="prop">highlightColor</span>=<span class="string">"#F3F4F6"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con animación personalizada</div>
+                <div class="code-block">
+<span class="comment">// Animación más rápida</span>
+&lt;<span class="component">Skeleton</span> <span class="prop">duration</span>={<span class="string">800</span>} /&gt;
+
+<span class="comment">// Animación más lenta</span>
+&lt;<span class="component">Skeleton</span> <span class="prop">duration</span>={<span class="string">1500</span>} /&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Tarjeta de perfil</div>
+                <div class="code-block">
+<span class="keyword">const</span> ProfileCardSkeleton = () => (
+  &lt;<span class="component">View</span> <span class="prop">style</span>={{ padding: <span class="string">16</span> }}&gt;
+    <span class="comment">{/* Avatar */}</span>
+    &lt;<span class="component">Skeleton</span> 
+      <span class="prop">width</span>={<span class="string">80</span>}
+      <span class="prop">height</span>={<span class="string">80</span>}
+      <span class="prop">borderRadius</span>={<span class="string">40</span>}
+      <span class="prop">marginBottom</span>={<span class="string">16</span>}
+    /&gt;
+    
+    <span class="comment">{/* Nombre */}</span>
+    &lt;<span class="component">Skeleton</span> 
+      <span class="prop">width</span>=<span class="string">"70%"</span>
+      <span class="prop">height</span>={<span class="string">24</span>}
+      <span class="prop">marginBottom</span>={<span class="string">8</span>}
+    /&gt;
+    
+    <span class="comment">{/* Descripción */}</span>
+    &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"100%"</span> <span class="prop">height</span>={<span class="string">16</span>} <span class="prop">marginBottom</span>={<span class="string">4</span>} /&gt;
+    &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"90%"</span> <span class="prop">height</span>={<span class="string">16</span>} /&gt;
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Lista de posts</div>
+                <div class="code-block">
+<span class="keyword">const</span> PostListSkeleton = () => (
+  &lt;<span class="component">View</span>&gt;
+    {[<span class="string">1</span>, <span class="string">2</span>, <span class="string">3</span>].map((item) => (
+      &lt;<span class="component">View</span> <span class="prop">key</span>={item} <span class="prop">style</span>={{ marginBottom: <span class="string">24</span>, padding: <span class="string">16</span> }}&gt;
+        <span class="comment">{/* Header con avatar y nombre */}</span>
+        &lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, marginBottom: <span class="string">12</span> }}&gt;
+          &lt;<span class="component">Skeleton</span> <span class="prop">width</span>={<span class="string">40</span>} <span class="prop">height</span>={<span class="string">40</span>} <span class="prop">borderRadius</span>={<span class="string">20</span>} /&gt;
+          &lt;<span class="component">View</span> <span class="prop">style</span>={{ marginLeft: <span class="string">12</span>, flex: <span class="string">1</span> }}&gt;
+            &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"60%"</span> <span class="prop">height</span>={<span class="string">16</span>} <span class="prop">marginBottom</span>={<span class="string">4</span>} /&gt;
+            &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"40%"</span> <span class="prop">height</span>={<span class="string">14</span>} /&gt;
+          &lt;/<span class="component">View</span>&gt;
+        &lt;/<span class="component">View</span>&gt;
+        
+        <span class="comment">{/* Contenido */}</span>
+        &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"100%"</span> <span class="prop">height</span>={<span class="string">14</span>} <span class="prop">marginBottom</span>={<span class="string">4</span>} /&gt;
+        &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"95%"</span> <span class="prop">height</span>={<span class="string">14</span>} <span class="prop">marginBottom</span>={<span class="string">12</span>} /&gt;
+        
+        <span class="comment">{/* Imagen */}</span>
+        &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"100%"</span> <span class="prop">height</span>={<span class="string">200</span>} <span class="prop">borderRadius</span>={<span class="string">8</span>} /&gt;
+      &lt;/<span class="component">View</span>&gt;
+    ))}
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con estado de carga condicional</div>
+                <div class="code-block">
+<span class="keyword">const</span> ProfileScreen = () => {
+  <span class="keyword">const</span> [isLoading, setIsLoading] = useState(<span class="keyword">true</span>);
+  <span class="keyword">const</span> [userData, setUserData] = useState(<span class="keyword">null</span>);
+
+  useEffect(() => {
+    fetchUserData().then(data => {
+      setUserData(data);
+      setIsLoading(<span class="keyword">false</span>);
+    });
+  }, []);
+
+  <span class="keyword">if</span> (isLoading) {
+    <span class="keyword">return</span> &lt;<span class="component">ProfileCardSkeleton</span> /&gt;;
+  }
+
+  <span class="keyword">return</span> &lt;<span class="component">ProfileCard</span> <span class="prop">data</span>={userData} /&gt;;
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Grid de productos</div>
+                <div class="code-block">
+<span class="keyword">const</span> ProductGridSkeleton = () => (
+  &lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, flexWrap: <span class="string">'wrap'</span>, gap: <span class="string">16</span> }}&gt;
+    {[<span class="string">1</span>, <span class="string">2</span>, <span class="string">3</span>, <span class="string">4</span>].map((item) => (
+      &lt;<span class="component">View</span> <span class="prop">key</span>={item} <span class="prop">style</span>={{ width: <span class="string">'48%'</span> }}&gt;
+        <span class="comment">{/* Imagen del producto */}</span>
+        &lt;<span class="component">Skeleton</span> 
+          <span class="prop">width</span>=<span class="string">"100%"</span>
+          <span class="prop">height</span>={<span class="string">150</span>}
+          <span class="prop">borderRadius</span>={<span class="string">8</span>}
+          <span class="prop">marginBottom</span>={<span class="string">8</span>}
+        /&gt;
+        
+        <span class="comment">{/* Nombre */}</span>
+        &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"90%"</span> <span class="prop">height</span>={<span class="string">16</span>} <span class="prop">marginBottom</span>={<span class="string">4</span>} /&gt;
+        
+        <span class="comment">{/* Precio */}</span>
+        &lt;<span class="component">Skeleton</span> <span class="prop">width</span>=<span class="string">"40%"</span> <span class="prop">height</span>={<span class="string">20</span>} /&gt;
+      &lt;/<span class="component">View</span>&gt;
+    ))}
+  &lt;/<span class="component">View</span>&gt;
+);</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>📱 <strong>Pantallas de carga:</strong> Mostrar estructura mientras se cargan datos</li>
+                <li>👤 <strong>Perfiles:</strong> Avatar, nombre y descripción de usuario</li>
+                <li>📋 <strong>Listas:</strong> Posts, comentarios, productos</li>
+                <li>🖼️ <strong>Galerías:</strong> Grid de imágenes o productos</li>
+                <li>📰 <strong>Feeds:</strong> Timeline de redes sociales</li>
+                <li>💬 <strong>Mensajes:</strong> Lista de conversaciones o chats</li>
+                <li>📊 <strong>Dashboards:</strong> Tarjetas de estadísticas</li>
+                <li>🎵 <strong>Media:</strong> Listas de canciones, videos, podcasts</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>📐 Usa dimensiones similares al contenido real para evitar "layout shifts"</li>
+                <li>🎨 Mantén colores sutiles y no muy contrastantes</li>
+                <li>⏱️ Muestra skeletons solo cuando la carga tome más de 300-500ms</li>
+                <li>📱 Crea componentes de skeleton reutilizables para cada tipo de contenido</li>
+                <li>🔄 No uses skeletons para operaciones instantáneas</li>
+                <li>📊 Muestra la cantidad correcta de items skeleton (no más de lo necesario)</li>
+                <li>✨ Usa animaciones sutiles (1000ms es un buen valor)</li>
+                <li>🎯 Replica la estructura del contenido real lo más fielmente posible</li>
+            </ul>
+        </div>
+
+        <!-- Animación -->
+        <div class="section">
+            <h2>✨ Animación Shimmer</h2>
+            <p>
+                El componente usa <code>Animated</code> de React Native para crear un efecto shimmer 
+                que pulsa suavemente, indicando que el contenido está cargando.
+            </p>
+
+            <div class="code-block">
+<span class="keyword">const</span> shimmerAnimation = Animated.loop(
+  Animated.sequence([
+    Animated.timing(animatedValue, {
+      toValue: <span class="string">1</span>,
+      duration: duration / <span class="string">2</span>,
+      useNativeDriver: <span class="keyword">true</span>,
+    }),
+    Animated.timing(animatedValue, {
+      toValue: <span class="string">0</span>,
+      duration: duration / <span class="string">2</span>,
+      useNativeDriver: <span class="keyword">true</span>,
+    }),
+  ])
+);
+
+<span class="keyword">const</span> opacity = animatedValue.interpolate({
+  inputRange: [<span class="string">0</span>, <span class="string">1</span>],
+  outputRange: [<span class="string">0.3</span>, <span class="string">1</span>],
+});</div>
+
+            <h3>Características</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🔄 <strong>Loop infinito:</strong> La animación se repite continuamente</li>
+                <li>⚡ <strong>useNativeDriver:</strong> Rendimiento optimizado en el hilo nativo</li>
+                <li>🎭 <strong>Interpolación de opacidad:</strong> Transición suave entre 0.3 y 1</li>
+                <li>⏱️ <strong>Duración personalizable:</strong> Por defecto 1000ms (1 segundo)</li>
+            </ul>
+        </div>
+
+        <!-- Patrones Comunes -->
+        <div class="section">
+            <h2>🎨 Patrones Comunes</h2>
+
+            <h3>1. Componente Wrapper Reutilizable</h3>
+            <div class="code-block">
+<span class="keyword">const</span> WithSkeleton = ({ isLoading, skeleton, children }) => {
+  <span class="keyword">if</span> (isLoading) {
+    <span class="keyword">return</span> skeleton;
+  }
+  <span class="keyword">return</span> children;
+};
+
+<span class="comment">// Uso</span>
+&lt;<span class="component">WithSkeleton</span>
+  <span class="prop">isLoading</span>={isLoading}
+  <span class="prop">skeleton</span>={&lt;<span class="component">ProfileCardSkeleton</span> /&gt;}
+&gt;
+  &lt;<span class="component">ProfileCard</span> <span class="prop">data</span>={userData} /&gt;
+&lt;/<span class="component">WithSkeleton</span>&gt;</div>
+
+            <h3>2. Array de Skeletons</h3>
+            <div class="code-block">
+<span class="keyword">const</span> SkeletonList = ({ count = <span class="string">3</span> }) => (
+  &lt;&gt;
+    {Array.from({ length: count }).map((_, index) => (
+      &lt;<span class="component">Skeleton</span> 
+        <span class="prop">key</span>={index}
+        <span class="prop">height</span>={<span class="string">60</span>}
+        <span class="prop">marginBottom</span>={<span class="string">12</span>}
+      /&gt;
+    ))}
+  &lt;/&gt;
+);</div>
+
+            <h3>3. Skeleton con Props Dinámicas</h3>
+            <div class="code-block">
+<span class="keyword">const</span> TextSkeleton = ({ lines = <span class="string">3</span>, lastLineWidth = <span class="string">'80%'</span> }) => (
+  &lt;&gt;
+    {Array.from({ length: lines }).map((_, index) => (
+      &lt;<span class="component">Skeleton</span>
+        <span class="prop">key</span>={index}
+        <span class="prop">width</span>={index === lines - <span class="string">1</span> ? lastLineWidth : <span class="string">'100%'</span>}
+        <span class="prop">height</span>={<span class="string">16</span>}
+        <span class="prop">marginBottom</span>={<span class="string">8</span>}
+      /&gt;
+    ))}
+  &lt;/&gt;
+);</div>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: View, Animated</li>
+            </ul>
+
+            <h3>Rendimiento</h3>
+            <p>
+                La animación usa <code>useNativeDriver: true</code>, lo que garantiza 60 FPS al ejecutarse 
+                en el hilo nativo. Esto es crucial cuando tienes múltiples skeletons en pantalla.
+            </p>
+
+            <h3>Limpieza de Animación</h3>
+            <p>El componente limpia automáticamente la animación cuando se desmonta:</p>
+            <div class="code-block">
+useEffect(() => {
+  shimmerAnimation.start();
+  
+  <span class="keyword">return</span> () => {
+    shimmerAnimation.stop(); <span class="comment">// Importante para evitar memory leaks</span>
+  };
+}, []);</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Skeleton</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

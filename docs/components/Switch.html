@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch Component - Kairox UI Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #33729E;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #33729E;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #53565a;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 4px solid #70c0f5;
+            white-space: pre-wrap;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .component {
+            color: #4ec9b0;
+        }
+
+        .prop {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #70c0f5;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .type {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+
+        .required {
+            background: #ffebee;
+            color: #c62828;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .optional {
+            background: #f1f8e9;
+            color: #558b2f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #40d953;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: #53565a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .visual-example {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .visual-example-item {
+            margin: 20px 0;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .visual-example-item label {
+            min-width: 120px;
+            font-weight: 600;
+            color: #53565a;
+        }
+
+        /* Switch Demos */
+        .switch-demo {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .switch-track {
+            border-radius: 999px;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+
+        .switch-thumb {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Sizes */
+        .switch-sm .switch-track { width: 40px; height: 22px; }
+        .switch-sm .switch-thumb { width: 16px; height: 16px; left: 3px; }
+        .switch-sm.active .switch-thumb { transform: translateY(-50%) translateX(18px); }
+
+        .switch-md .switch-track { width: 50px; height: 28px; }
+        .switch-md .switch-thumb { width: 22px; height: 22px; left: 3px; }
+        .switch-md.active .switch-thumb { transform: translateY(-50%) translateX(22px); }
+
+        .switch-lg .switch-track { width: 60px; height: 34px; }
+        .switch-lg .switch-thumb { width: 28px; height: 28px; left: 3px; }
+        .switch-lg.active .switch-thumb { transform: translateY(-50%) translateX(26px); }
+
+        .switch-xl .switch-track { width: 70px; height: 40px; }
+        .switch-xl .switch-thumb { width: 34px; height: 34px; left: 3px; }
+        .switch-xl.active .switch-thumb { transform: translateY(-50%) translateX(30px); }
+
+        /* Colors */
+        .switch-track { background-color: #EDEDED; }
+        .switch-demo.active .switch-track { background-color: #969696; }
+
+        .tip {
+            background: #fff3e0;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: #e67e22;
+        }
+
+        .warning {
+            background: #ffebee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning strong {
+            color: #c62828;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .visual-example-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Switch Component</h1>
+            <p>Interruptor de toggle animado con múltiples tamaños y colores personalizables</p>
+            <span class="badge">v1.0.0</span>
+            <span class="badge">React Native</span>
+            <span class="badge">Animated</span>
+        </div>
+
+        <!-- Instalación -->
+        <div class="section">
+            <h2>📦 Instalación</h2>
+            <p>Importa el componente desde el UI Kit:</p>
+            <div class="code-block">
+<span class="keyword">import</span> { <span class="component">Switch</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;</div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="section">
+            <h2>📖 Descripción</h2>
+            <p>
+                El componente <code>Switch</code> es un interruptor de toggle personalizable que permite a los 
+                usuarios activar o desactivar una opción. Incluye animaciones suaves con spring physics, 
+                4 tamaños predefinidos y colores totalmente personalizables.
+            </p>
+            <div class="tip">
+                <strong>💡 Tip:</strong> El componente usa Animated de React Native para crear transiciones 
+                fluidas y naturales. Las animaciones usan spring physics para un movimiento más orgánico.
+            </div>
+        </div>
+
+        <!-- Props -->
+        <div class="section">
+            <h2>⚙️ Props</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valor por defecto</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>value</strong></td>
+                            <td><span class="type">boolean</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td>-</td>
+                            <td>Estado actual del switch (true = activo, false = inactivo)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>onValueChange</strong></td>
+                            <td><span class="type">(value: boolean) => void</span></td>
+                            <td><span class="required">Requerido</span></td>
+                            <td>-</td>
+                            <td>Función que se ejecuta cuando cambia el estado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>size</strong></td>
+                            <td><span class="type">'sm' | 'md' | 'lg' | 'xl'</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'md'</code></td>
+                            <td>Tamaño del switch</td>
+                        </tr>
+                        <tr>
+                            <td><strong>thumbColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'white'</code></td>
+                            <td>Color del botón deslizante (thumb)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>backgroundActiveColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#969696'</code></td>
+                            <td>Color de fondo cuando está activo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>backgroundInactiveColor</strong></td>
+                            <td><span class="type">string</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td><code>'#EDEDED'</code></td>
+                            <td>Color de fondo cuando está inactivo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>style</strong></td>
+                            <td><span class="type">ViewStyle</span></td>
+                            <td><span class="optional">Opcional</span></td>
+                            <td>-</td>
+                            <td>Estilos personalizados para el contenedor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tamaños -->
+        <div class="section">
+            <h2>📏 Tamaños</h2>
+            <p>El componente Switch ofrece 4 tamaños predefinidos:</p>
+            
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Small (sm):</label>
+                    <div class="switch-demo switch-sm active">
+                        <div class="switch-track">
+                            <div class="switch-thumb"></div>
+                        </div>
+                    </div>
+                    <span style="color: #6B7280; font-size: 14px;">40x22 px</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Medium (md):</label>
+                    <div class="switch-demo switch-md active">
+                        <div class="switch-track">
+                            <div class="switch-thumb"></div>
+                        </div>
+                    </div>
+                    <span style="color: #6B7280; font-size: 14px;">50x28 px (por defecto)</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Large (lg):</label>
+                    <div class="switch-demo switch-lg active">
+                        <div class="switch-track">
+                            <div class="switch-thumb"></div>
+                        </div>
+                    </div>
+                    <span style="color: #6B7280; font-size: 14px;">60x34 px</span>
+                </div>
+                <div class="visual-example-item">
+                    <label>Extra Large (xl):</label>
+                    <div class="switch-demo switch-xl active">
+                        <div class="switch-track">
+                            <div class="switch-thumb"></div>
+                        </div>
+                    </div>
+                    <span style="color: #6B7280; font-size: 14px;">70x40 px</span>
+                </div>
+            </div>
+
+            <h3>Estados</h3>
+            <div class="visual-example">
+                <div class="visual-example-item">
+                    <label>Inactivo:</label>
+                    <div class="switch-demo switch-md">
+                        <div class="switch-track">
+                            <div class="switch-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-example-item">
+                    <label>Activo:</label>
+                    <div class="switch-demo switch-md active">
+                        <div class="switch-track">
+                            <div class="switch-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Configuración de Tamaños</h3>
+            <div class="code-block">
+<span class="keyword">const</span> <span class="component">sizes</span> = {
+  <span class="prop">sm</span>: {
+    <span class="prop">width</span>: <span class="string">40</span>,
+    <span class="prop">height</span>: <span class="string">22</span>,
+    <span class="prop">thumbSize</span>: <span class="string">16</span>,
+    <span class="prop">padding</span>: <span class="string">3</span>,
+  },
+  <span class="prop">md</span>: {
+    <span class="prop">width</span>: <span class="string">50</span>,
+    <span class="prop">height</span>: <span class="string">28</span>,
+    <span class="prop">thumbSize</span>: <span class="string">22</span>,
+    <span class="prop">padding</span>: <span class="string">3</span>,
+  },
+  <span class="prop">lg</span>: {
+    <span class="prop">width</span>: <span class="string">60</span>,
+    <span class="prop">height</span>: <span class="string">34</span>,
+    <span class="prop">thumbSize</span>: <span class="string">28</span>,
+    <span class="prop">padding</span>: <span class="string">3</span>,
+  },
+  <span class="prop">xl</span>: {
+    <span class="prop">width</span>: <span class="string">70</span>,
+    <span class="prop">height</span>: <span class="string">40</span>,
+    <span class="prop">thumbSize</span>: <span class="string">34</span>,
+    <span class="prop">padding</span>: <span class="string">3</span>,
+  },
+};</div>
+        </div>
+
+        <!-- Ejemplos -->
+        <div class="section">
+            <h2>💻 Ejemplos de Uso</h2>
+
+            <div class="example">
+                <div class="example-title">Ejemplo básico</div>
+                <div class="code-block">
+<span class="keyword">import</span> { useState } <span class="keyword">from</span> <span class="string">'react'</span>;
+<span class="keyword">import</span> { <span class="component">Switch</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+<span class="keyword">const</span> MyComponent = () => {
+  <span class="keyword">const</span> [isEnabled, setIsEnabled] = useState(<span class="keyword">false</span>);
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">Switch</span>
+      <span class="prop">value</span>={isEnabled}
+      <span class="prop">onValueChange</span>={setIsEnabled}
+    /&gt;
+  );
+};</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con diferentes tamaños</div>
+                <div class="code-block">
+&lt;<span class="component">Switch</span> 
+  <span class="prop">value</span>={isSmall}
+  <span class="prop">onValueChange</span>={setIsSmall}
+  <span class="prop">size</span>=<span class="string">"sm"</span>
+/&gt;
+
+&lt;<span class="component">Switch</span> 
+  <span class="prop">value</span>={isMedium}
+  <span class="prop">onValueChange</span>={setIsMedium}
+  <span class="prop">size</span>=<span class="string">"md"</span>
+/&gt;
+
+&lt;<span class="component">Switch</span> 
+  <span class="prop">value</span>={isLarge}
+  <span class="prop">onValueChange</span>={setIsLarge}
+  <span class="prop">size</span>=<span class="string">"lg"</span>
+/&gt;
+
+&lt;<span class="component">Switch</span> 
+  <span class="prop">value</span>={isXLarge}
+  <span class="prop">onValueChange</span>={setIsXLarge}
+  <span class="prop">size</span>=<span class="string">"xl"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con colores personalizados</div>
+                <div class="code-block">
+<span class="comment">// Switch verde cuando está activo</span>
+&lt;<span class="component">Switch</span>
+  <span class="prop">value</span>={isEnabled}
+  <span class="prop">onValueChange</span>={setIsEnabled}
+  <span class="prop">backgroundActiveColor</span>=<span class="string">"#10B981"</span>
+/&gt;
+
+<span class="comment">// Switch azul cuando está activo</span>
+&lt;<span class="component">Switch</span>
+  <span class="prop">value</span>={isEnabled}
+  <span class="prop">onValueChange</span>={setIsEnabled}
+  <span class="prop">backgroundActiveColor</span>=<span class="string">"#3B82F6"</span>
+/&gt;
+
+<span class="comment">// Switch con colores personalizados completos</span>
+&lt;<span class="component">Switch</span>
+  <span class="prop">value</span>={isEnabled}
+  <span class="prop">onValueChange</span>={setIsEnabled}
+  <span class="prop">backgroundActiveColor</span>=<span class="string">"#33729E"</span>
+  <span class="prop">backgroundInactiveColor</span>=<span class="string">"#E5E7EB"</span>
+  <span class="prop">thumbColor</span>=<span class="string">"#FFFFFF"</span>
+/&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con etiqueta</div>
+                <div class="code-block">
+<span class="keyword">import</span> { <span class="component">View</span>, <span class="component">Text</span>, <span class="component">Switch</span> } <span class="keyword">from</span> <span class="string">'./UI'</span>;
+
+&lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, alignItems: <span class="string">'center'</span>, gap: <span class="string">12</span> }}&gt;
+  &lt;<span class="component">Switch</span>
+    <span class="prop">value</span>={isEnabled}
+    <span class="prop">onValueChange</span>={setIsEnabled}
+  /&gt;
+  &lt;<span class="component">Text</span>&gt;Activar notificaciones&lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">View</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Configuración de perfil</div>
+                <div class="code-block">
+<span class="keyword">const</span> SettingsScreen = () => {
+  <span class="keyword">const</span> [notifications, setNotifications] = useState(<span class="keyword">true</span>);
+  <span class="keyword">const</span> [darkMode, setDarkMode] = useState(<span class="keyword">false</span>);
+  <span class="keyword">const</span> [soundEnabled, setSoundEnabled] = useState(<span class="keyword">true</span>);
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span> <span class="prop">padding</span>={<span class="string">20</span>}&gt;
+      <span class="comment">{/* Notificaciones */}</span>
+      &lt;<span class="component">View</span> <span class="prop">style</span>={styles.settingRow}&gt;
+        &lt;<span class="component">View</span>&gt;
+          &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"md"</span>&gt;Notificaciones&lt;/<span class="component">Text</span>&gt;
+          &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"sm"</span> <span class="prop">color</span>=<span class="string">"#6B7280"</span>&gt;
+            Recibe alertas de actualizaciones
+          &lt;/<span class="component">Text</span>&gt;
+        &lt;/<span class="component">View</span>&gt;
+        &lt;<span class="component">Switch</span>
+          <span class="prop">value</span>={notifications}
+          <span class="prop">onValueChange</span>={setNotifications}
+          <span class="prop">backgroundActiveColor</span>=<span class="string">"#33729E"</span>
+        /&gt;
+      &lt;/<span class="component">View</span>&gt;
+
+      <span class="comment">{/* Modo oscuro */}</span>
+      &lt;<span class="component">View</span> <span class="prop">style</span>={styles.settingRow}&gt;
+        &lt;<span class="component">View</span>&gt;
+          &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"md"</span>&gt;Modo oscuro&lt;/<span class="component">Text</span>&gt;
+          &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"sm"</span> <span class="prop">color</span>=<span class="string">"#6B7280"</span>&gt;
+            Tema oscuro para la aplicación
+          &lt;/<span class="component">Text</span>&gt;
+        &lt;/<span class="component">View</span>&gt;
+        &lt;<span class="component">Switch</span>
+          <span class="prop">value</span>={darkMode}
+          <span class="prop">onValueChange</span>={setDarkMode}
+          <span class="prop">backgroundActiveColor</span>=<span class="string">"#1F2937"</span>
+        /&gt;
+      &lt;/<span class="component">View</span>&gt;
+
+      <span class="comment">{/* Sonido */}</span>
+      &lt;<span class="component">View</span> <span class="prop">style</span>={styles.settingRow}&gt;
+        &lt;<span class="component">View</span>&gt;
+          &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"md"</span>&gt;Sonido&lt;/<span class="component">Text</span>&gt;
+        &lt;/<span class="component">View</span>&gt;
+        &lt;<span class="component">Switch</span>
+          <span class="prop">value</span>={soundEnabled}
+          <span class="prop">onValueChange</span>={setSoundEnabled}
+          <span class="prop">size</span>=<span class="string">"sm"</span>
+        /&gt;
+      &lt;/<span class="component">View</span>&gt;
+    &lt;/<span class="component">View</span>&gt;
+  );
+};
+
+<span class="keyword">const</span> styles = StyleSheet.create({
+  settingRow: {
+    flexDirection: <span class="string">'row'</span>,
+    justifyContent: <span class="string">'space-between'</span>,
+    alignItems: <span class="string">'center'</span>,
+    paddingVertical: <span class="string">16</span>,
+    borderBottomWidth: <span class="string">1</span>,
+    borderBottomColor: <span class="string">'#E5E7EB'</span>,
+  },
+});</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Con validación</div>
+                <div class="code-block">
+<span class="keyword">const</span> [agreedToTerms, setAgreedToTerms] = useState(<span class="keyword">false</span>);
+
+<span class="keyword">const</span> handleSubmit = () => {
+  <span class="keyword">if</span> (!agreedToTerms) {
+    Alert.alert(<span class="string">'Error'</span>, <span class="string">'Debes aceptar los términos y condiciones'</span>);
+    <span class="keyword">return</span>;
+  }
+  <span class="comment">// Continuar con el submit...</span>
+};
+
+&lt;<span class="component">View</span> <span class="prop">style</span>={{ flexDirection: <span class="string">'row'</span>, alignItems: <span class="string">'center'</span>, marginTop: <span class="string">20</span> }}&gt;
+  &lt;<span class="component">Switch</span>
+    <span class="prop">value</span>={agreedToTerms}
+    <span class="prop">onValueChange</span>={setAgreedToTerms}
+    <span class="prop">size</span>=<span class="string">"sm"</span>
+  /&gt;
+  &lt;<span class="component">Text</span> <span class="prop">variant</span>=<span class="string">"sm"</span> <span class="prop">style</span>={{ marginLeft: <span class="string">10</span> }}&gt;
+    Acepto los términos y condiciones
+  &lt;/<span class="component">Text</span>&gt;
+&lt;/<span class="component">View</span>&gt;</div>
+            </div>
+
+            <div class="example">
+                <div class="example-title">Lista de opciones</div>
+                <div class="code-block">
+<span class="keyword">const</span> PrivacySettings = () => {
+  <span class="keyword">const</span> [settings, setSettings] = useState({
+    shareLocation: <span class="keyword">false</span>,
+    shareContacts: <span class="keyword">false</span>,
+    sharePhotos: <span class="keyword">true</span>,
+    publicProfile: <span class="keyword">false</span>,
+  });
+
+  <span class="keyword">const</span> updateSetting = (key, value) => {
+    setSettings(prev => ({ ...prev, [key]: value }));
+  };
+
+  <span class="keyword">const</span> options = [
+    { key: <span class="string">'shareLocation'</span>, label: <span class="string">'Compartir ubicación'</span> },
+    { key: <span class="string">'shareContacts'</span>, label: <span class="string">'Compartir contactos'</span> },
+    { key: <span class="string">'sharePhotos'</span>, label: <span class="string">'Compartir fotos'</span> },
+    { key: <span class="string">'publicProfile'</span>, label: <span class="string">'Perfil público'</span> },
+  ];
+
+  <span class="keyword">return</span> (
+    &lt;<span class="component">View</span>&gt;
+      {options.map((option) => (
+        &lt;<span class="component">View</span> <span class="prop">key</span>={option.key} <span class="prop">style</span>={styles.row}&gt;
+          &lt;<span class="component">Text</span>&gt;{option.label}&lt;/<span class="component">Text</span>&gt;
+          &lt;<span class="component">Switch</span>
+            <span class="prop">value</span>={settings[option.key]}
+            <span class="prop">onValueChange</span>={(value) => updateSetting(option.key, value)}
+            <span class="prop">backgroundActiveColor</span>=<span class="string">"#10B981"</span>
+          /&gt;
+        &lt;/<span class="component">View</span>&gt;
+      ))}
+    &lt;/<span class="component">View</span>&gt;
+  );
+};</div>
+            </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="section">
+            <h2>💼 Casos de Uso Comunes</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>⚙️ <strong>Configuración:</strong> Activar/desactivar opciones en pantallas de ajustes</li>
+                <li>🔔 <strong>Notificaciones:</strong> Controlar preferencias de notificaciones</li>
+                <li>🌓 <strong>Temas:</strong> Cambiar entre modo claro y oscuro</li>
+                <li>🔐 <strong>Privacidad:</strong> Gestionar configuración de privacidad</li>
+                <li>📱 <strong>Funcionalidades:</strong> Activar/desactivar características de la app</li>
+                <li>✅ <strong>Preferencias:</strong> Guardar preferencias del usuario</li>
+                <li>🎵 <strong>Multimedia:</strong> Controles de sonido, vibración, etc.</li>
+                <li>🌐 <strong>Conectividad:</strong> WiFi, Bluetooth, datos móviles</li>
+            </ul>
+        </div>
+
+        <!-- Buenas Prácticas -->
+        <div class="section">
+            <h2>✅ Buenas Prácticas</h2>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>🏷️ Siempre acompaña el switch con una etiqueta descriptiva</li>
+                <li>📍 Coloca el switch a la derecha y la etiqueta a la izquierda (convención UX)</li>
+                <li>⚡ Los cambios deben aplicarse inmediatamente, no requieren botón de guardar</li>
+                <li>📏 Usa tamaño 'md' para la mayoría de los casos, 'sm' para ajustes secundarios</li>
+                <li>🎨 Usa colores verdes (#10B981) para indicar "activo" cuando sea apropiado</li>
+                <li>♿ Asegúrate de que el área táctil sea suficientemente grande (mínimo 44x44)</li>
+                <li>💬 Provee contexto adicional con texto secundario cuando sea necesario</li>
+                <li>🔄 Guarda el estado inmediatamente o muestra feedback visual del cambio</li>
+                <li>📱 Evita poner demasiados switches juntos sin separadores visuales</li>
+            </ul>
+        </div>
+
+        <!-- Animación -->
+        <div class="section">
+            <h2>✨ Animación</h2>
+            <p>
+                El componente Switch usa <code>Animated.spring</code> de React Native para crear transiciones 
+                naturales y fluidas. Los parámetros de la animación están optimizados para sentirse responsivos:
+            </p>
+
+            <div class="code-block">
+Animated.spring(translateX, {
+  <span class="prop">toValue</span>: value ? <span class="string">1</span> : <span class="string">0</span>,
+  <span class="prop">useNativeDriver</span>: <span class="keyword">true</span>,
+  <span class="prop">bounciness</span>: <span class="string">8</span>,        <span class="comment">// Efecto de rebote sutil</span>
+  <span class="prop">speed</span>: <span class="string">12</span>,              <span class="comment">// Velocidad de la animación</span>
+}).start();</div>
+
+            <h3>Características de la Animación</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>✨ <strong>useNativeDriver:</strong> La animación se ejecuta en el hilo nativo para mejor rendimiento</li>
+                <li>🎯 <strong>Spring Physics:</strong> Movimiento natural con efecto de rebote</li>
+                <li>⚡ <strong>Rápido y Responsivo:</strong> Feedback inmediato al tocar</li>
+                <li>🎨 <strong>Transición de Color:</strong> El fondo cambia suavemente entre estados</li>
+            </ul>
+        </div>
+
+        <!-- Personalización -->
+        <div class="section">
+            <h2>🎨 Paleta de Colores Recomendada</h2>
+            
+            <h3>Colores Activos Sugeridos</h3>
+            <div class="code-block">
+<span class="comment">// Verde - Éxito/Activo (recomendado)</span>
+<span class="prop">backgroundActiveColor</span>=<span class="string">"#10B981"</span>
+
+<span class="comment">// Azul - Primario</span>
+<span class="prop">backgroundActiveColor</span>=<span class="string">"#3B82F6"</span>
+
+<span class="comment">// Púrpura - Marca</span>
+<span class="prop">backgroundActiveColor</span>=<span class="string">"#33729E"</span>
+
+<span class="comment">// Negro/Gris oscuro - Elegante</span>
+<span class="prop">backgroundActiveColor</span>=<span class="string">"#1F2937"</span>
+
+<span class="comment">// iOS estilo</span>
+<span class="prop">backgroundActiveColor</span>=<span class="string">"#34C759"</span></div>
+
+            <h3>Crear Variantes Personalizadas</h3>
+            <div class="code-block">
+<span class="comment">// Switch de éxito (verde)</span>
+<span class="keyword">const</span> SuccessSwitch = ({ value, onValueChange }) => (
+  &lt;<span class="component">Switch</span>
+    <span class="prop">value</span>={value}
+    <span class="prop">onValueChange</span>={onValueChange}
+    <span class="prop">backgroundActiveColor</span>=<span class="string">"#10B981"</span>
+    <span class="prop">backgroundInactiveColor</span>=<span class="string">"#D1FAE5"</span>
+  /&gt;
+);
+
+<span class="comment">// Switch de error (rojo)</span>
+<span class="keyword">const</span> ErrorSwitch = ({ value, onValueChange }) => (
+  &lt;<span class="component">Switch</span>
+    <span class="prop">value</span>={value}
+    <span class="prop">onValueChange</span>={onValueChange}
+    <span class="prop">backgroundActiveColor</span>=<span class="string">"#EF4444"</span>
+    <span class="prop">backgroundInactiveColor</span>=<span class="string">"#FEE2E2"</span>
+  /&gt;
+);</div>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="section">
+            <h2>🔧 Notas Técnicas</h2>
+            
+            <h3>Dependencias</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li><code>react-native</code>: TouchableOpacity, Animated, View</li>
+            </ul>
+
+            <h3>Rendimiento</h3>
+            <p>
+                El componente usa <code>useNativeDriver: true</code> en las animaciones, lo que significa que 
+                la animación se ejecuta completamente en el hilo nativo. Esto garantiza 60 FPS incluso en 
+                dispositivos de gama baja.
+            </p>
+
+            <h3>Funcionamiento Interno</h3>
+            <div class="code-block">
+<span class="comment">// 1. Valor animado se inicializa según el estado</span>
+<span class="keyword">const</span> translateX = useRef(<span class="keyword">new</span> Animated.Value(value ? <span class="string">1</span> : <span class="string">0</span>)).current;
+
+<span class="comment">// 2. Se interpola la posición del thumb</span>
+<span class="keyword">const</span> thumbTranslateX = translateX.interpolate({
+  inputRange: [<span class="string">0</span>, <span class="string">1</span>],
+  outputRange: [<span class="string">0</span>, sizeValues.width - sizeValues.thumbSize - sizeValues.padding * <span class="string">2</span>],
+});
+
+<span class="comment">// 3. El thumb se anima usando transform</span>
+<span class="prop">transform</span>: [{ translateX: thumbTranslateX }]</div>
+
+            <div class="warning">
+                <strong>⚠️ Nota:</strong> No olvides pasar tanto <code>value</code> como <code>onValueChange</code>. 
+                El componente es controlado, por lo que necesitas gestionar el estado externamente.
+            </div>
+        </div>
+
+        <!-- Accesibilidad -->
+        <div class="section">
+            <h2>♿ Accesibilidad</h2>
+            <p>Mejora la accesibilidad de tus switches:</p>
+            
+            <div class="code-block">
+&lt;<span class="component">TouchableOpacity</span>
+  <span class="prop">accessible</span>={<span class="keyword">true</span>}
+  <span class="prop">accessibilityRole</span>=<span class="string">"switch"</span>
+  <span class="prop">accessibilityState</span>={{ checked: value }}
+  <span class="prop">accessibilityLabel</span>=<span class="string">"Activar notificaciones"</span>
+&gt;
+  &lt;<span class="component">Switch</span> <span class="prop">value</span>={value} <span class="prop">onValueChange</span>={setValue} /&gt;
+&lt;/<span class="component">TouchableOpacity</span>&gt;</div>
+
+            <h3>Recomendaciones</h3>
+            <ul style="line-height: 2; padding-left: 20px;">
+                <li>Usa <code>accessibilityLabel</code> para describir qué hace el switch</li>
+                <li>Incluye <code>accessibilityState</code> con el estado actual</li>
+                <li>Asegúrate de que haya suficiente contraste entre los colores activo/inactivo</li>
+                <li>El área táctil del switch debe ser fácil de presionar (44x44 mínimo)</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="section" style="text-align: center; background: linear-gradient(135deg, #70c0f5 0%, #33729E 100%); color: white;">
+            <h2 style="color: white; border: none;">📚 Kairox UI Kit</h2>
+            <p>Documentación del componente Switch</p>
+            <p style="margin-top: 20px; opacity: 0.8;">v1.0.0 - 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+

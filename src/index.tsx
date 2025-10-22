@@ -20,7 +20,8 @@ import {
     CustomStatusBar,
     BoxContent,
     Button,
-    View
+    View,
+    TextInput
 } from './UI';
 
 const HomeContainer = () => {
@@ -30,6 +31,17 @@ const HomeContainer = () => {
     const [switch3, setSwitch3] = React.useState(false);
     const [checkbox1, setCheckbox1] = React.useState(false);
     const [checkbox2, setCheckbox2] = React.useState(true);
+    
+    // Estados para TextInput
+    const [textInput1, setTextInput1] = React.useState('');
+    const [textInput2, setTextInput2] = React.useState('');
+    const [textInput3, setTextInput3] = React.useState('');
+    const [textInput4, setTextInput4] = React.useState('');
+    const [textInput5, setTextInput5] = React.useState('');
+    const [textInput6, setTextInput6] = React.useState('');
+    const [textInput7, setTextInput7] = React.useState('');
+    const [textInput8, setTextInput8] = React.useState('');
+    
     console.log("aca");
 
     return (
@@ -459,7 +471,105 @@ const HomeContainer = () => {
                     <Text variant='xs' marginBottom={8}>
                         Divider grueso
                     </Text>
-                    <Divider height={4} marginBottom={40} />
+                    <Divider height={4} marginBottom={24} />
+
+                    {/* ========== SECCIÓN: TEXT INPUT ========== */}
+                    <Text variant='3xl' marginBottom={8}>
+                        Text Input
+                    </Text>
+                    <Text variant='sm' color='#6B7280' marginBottom={20}>
+                        Campos de entrada de texto con diferentes variantes y estados
+                    </Text>
+
+                    {/* TextInput básico */}
+                    <TextInput
+                        label='Nombre completo'
+                        placeholder='Ingresa tu nombre'
+                        value={textInput1}
+                        onChangeText={setTextInput1}
+                        marginBottom={16}
+                    />
+
+                    {/* TextInput con helper text */}
+                    <TextInput
+                        label='Email'
+                        placeholder='tu@email.com'
+                        value={textInput2}
+                        onChangeText={setTextInput2}
+                        helperText='Te enviaremos un correo de confirmación'
+                        marginBottom={16}
+                    />
+
+                    {/* TextInput con error */}
+                    <TextInput
+                        label='Contraseña'
+                        placeholder='Mínimo 8 caracteres'
+                        value={textInput3}
+                        onChangeText={setTextInput3}
+                        error={textInput3.length > 0 && textInput3.length < 8 ? 'La contraseña debe tener al menos 8 caracteres' : ''}
+                        secureTextEntry
+                        marginBottom={16}
+                    />
+
+                    {/* TextInput requerido */}
+                    <TextInput
+                        label='Teléfono'
+                        placeholder='+1 (555) 123-4567'
+                        value={textInput4}
+                        onChangeText={setTextInput4}
+                        required
+                        marginBottom={16}
+                    />
+
+                    {/* TextInput deshabilitado */}
+                    <TextInput
+                        label='Campo deshabilitado'
+                        placeholder='No puedes escribir aquí'
+                        value={textInput5}
+                        onChangeText={setTextInput5}
+                        disabled
+                        marginBottom={16}
+                    />
+
+                    {/* TextInput con iconos */}
+                    <TextInput
+                        label='Búsqueda'
+                        placeholder='Buscar productos...'
+                        value={textInput6}
+                        onChangeText={setTextInput6}
+                        leftIcon={
+                            <MaterialIcons
+                                name='search'
+                                size={20}
+                                color='#6B7280'
+                            />
+                        }
+                        marginBottom={16}
+                    />
+
+                    {/* TextInput con diferentes tamaños */}
+                    <View flexDirection='row' gap={12} marginBottom={16}>
+                        <View flex={1}>
+                            <TextInput
+                                label='Small'
+                                placeholder='Small size'
+                                value={textInput7}
+                                onChangeText={setTextInput7}
+                                size='small'
+                            />
+                        </View>
+                        <View flex={1}>
+                            <TextInput
+                                label='Large'
+                                placeholder='Large size'
+                                value={textInput8}
+                                onChangeText={setTextInput8}
+                                size='large'
+                            />
+                        </View>
+                    </View>
+
+                    <Divider marginVertical={24} height={2} />
 
                     {/* Footer */}
                     <View alignItems='center' marginTop={20}>

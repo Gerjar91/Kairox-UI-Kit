@@ -20,7 +20,8 @@ import {
     CustomStatusBar,
     BoxContent,
     Button,
-    View
+    View,
+    Input
 } from './UI';
 
 const HomeContainer = () => {
@@ -131,6 +132,62 @@ const HomeContainer = () => {
                         disabled={true}
                         onPress={() => console.log('Disabled')}
                         marginBottom={24}
+                    />
+
+                    <Divider marginVertical={24} height={2} />
+
+                    {/* ========== SECCIÓN: INPUT ========== */}
+                    <Text variant='3xl' marginBottom={8}>
+                        Input
+                    </Text>
+                    <Text variant='sm' color='#6B7280' marginBottom={20}>
+                        Campos de entrada con diferentes variantes
+                    </Text>
+
+                    <Input
+                        label="Nombre"
+                        placeholder="Ingresa tu nombre"
+                        variant="default"
+                    />
+
+                    <Input
+                        label="Email"
+                        placeholder="tu@email.com"
+                        variant="filled"
+                        keyboardType="email-address"
+                    />
+
+                    <Input
+                        label="Teléfono"
+                        placeholder="+1 (555) 123-4567"
+                        variant="outlined"
+                        keyboardType="phone-pad"
+                    />
+
+                    <Input
+                        label="Contraseña"
+                        placeholder="Ingresa tu contraseña"
+                        secureTextEntry={true}
+                        variant="default"
+                    />
+
+
+                    <Input
+                        label="Campo deshabilitado"
+                        placeholder="Campo deshabilitado"
+                        disabled={true}
+                    />
+
+                    <Input
+                        label="Campo con icono"
+                        placeholder="Buscar..."
+                        leftElement={
+                        <MaterialIcons
+                            name="search"
+                            size={20}
+                            color="#9CA3AF"
+                            />
+                        }
                     />
 
                     <Divider marginVertical={24} height={2} />

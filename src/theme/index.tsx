@@ -1,12 +1,14 @@
 import colors from './Colors';
 import Text from './Text';
 import Button from './Button';
+import Input from './Input';
 
 interface Theme {
   colors: typeof colors;
   components?: {
     Text: typeof Text;
     Button: typeof Button;
+    Input: typeof Input;
   };
 }
 const theme: Theme = {
@@ -14,6 +16,7 @@ const theme: Theme = {
   components: {
     Text,
     Button,
+    Input,
   },
 };
 

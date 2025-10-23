@@ -9,6 +9,7 @@ export { default as CustomStatusBar } from './CustomStatusBar';
 export { default as Divider } from './Divider';
 export { default as Header } from './Header';
 export { default as Icon } from './Icon';
+export { default as Input } from './Input';
 export { default as ProgressBar } from './ProgressBar';
 export { default as RemovableView } from './RemovableView';
 export { default as Skeleton } from './Skeleton';
